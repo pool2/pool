@@ -1,0 +1,84 @@
+<div>
+    <h2>
+        <span>Appointments</span>
+        <button class="btn btn-primary float-right jh-create-entity create-appointment" [routerLink]="['/', { outlets: { popup: ['appointment-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Appointment
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="appointments">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Start Time</span></th>
+            <th><span>End Time</span></th>
+            <th><span>Notes</span></th>
+            <th><span>Image</span></th>
+            <th><span>Employee</span></th>
+            <th><span>Pool</span></th>
+            <th><span>Inventory Used</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let appointment of appointments ;trackBy: trackId">
+                <td><a [routerLink]="['../appointment', appointment.id ]">{{appointment.id}}</a></td>
+                <td>{{appointment.startTime | date:'mediumDate'}}</td>
+                <td>{{appointment.endTime | date:'mediumDate'}}</td>
+                <td>{{appointment.notes}}</td>
+                <td>
+                    <div *ngIf="appointment.image">
+                        <a [routerLink]="['../image', appointment.image?.id ]" >{{appointment.image?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="appointment.employee">
+                        <a [routerLink]="['../employee', appointment.employee?.id ]" >{{appointment.employee?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="appointment.pool">
+                        <a [routerLink]="['../pool', appointment.pool?.id ]" >{{appointment.pool?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let inventoryUsed of appointment.inventoryUseds; let last = last">
+                            <a class="form-control-static" [routerLink]="['../inventory-used', inventoryUsed?.id ]">{{inventoryUsed.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../appointment', appointment.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'appointment/'+ appointment.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'appointment/'+ appointment.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

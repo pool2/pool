@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "size",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170919205625",
+    "entityTableName": "pool",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

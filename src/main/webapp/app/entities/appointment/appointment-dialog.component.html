@@ -1,0 +1,77 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAppointmentLabel">Create or edit a Appointment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!appointment.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="appointment.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_startTime">Start Time</label>
+            <div class="input-group">
+                <input id="field_startTime" type="text" class="form-control" name="startTime" ngbDatepicker  #startTimeDp="ngbDatepicker" [(ngModel)]="appointment.startTime"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="startTimeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_endTime">End Time</label>
+            <div class="input-group">
+                <input id="field_endTime" type="text" class="form-control" name="endTime" ngbDatepicker  #endTimeDp="ngbDatepicker" [(ngModel)]="appointment.endTime"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="endTimeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_notes">Notes</label>
+            <textarea class="form-control" name="notes" id="field_notes"
+                [(ngModel)]="appointment.notes"  ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_image">Image</label>
+            <select class="form-control" id="field_image" name="image" [(ngModel)]="appointment.image">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="imageOption.id === appointment.image?.id ? appointment.image : imageOption" *ngFor="let imageOption of images; trackBy: trackImageById">{{imageOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_employee">Employee</label>
+            <select class="form-control" id="field_employee" name="employee" [(ngModel)]="appointment.employee" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="employeeOption.id === appointment.employee?.id ? appointment.employee : employeeOption" *ngFor="let employeeOption of employees; trackBy: trackEmployeeById">{{employeeOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_pool">Pool</label>
+            <select class="form-control" id="field_pool" name="pool" [(ngModel)]="appointment.pool" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="poolOption.id === appointment.pool?.id ? appointment.pool : poolOption" *ngFor="let poolOption of pools; trackBy: trackPoolById">{{poolOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_inventoryUsed">Inventory Used</label>
+            <select class="form-control" id="field_inventoryUsed" multiple name="inventoryUsed" [(ngModel)]="appointment.inventoryUseds">
+                <option [ngValue]="getSelected(appointment.inventoryUseds, inventoryUsedOption)" *ngFor="let inventoryUsedOption of inventoryuseds; trackBy: trackInventoryUsedById">{{inventoryUsedOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

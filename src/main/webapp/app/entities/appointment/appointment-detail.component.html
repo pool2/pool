@@ -1,0 +1,57 @@
+
+<div *ngIf="appointment">
+    <h2><span>Appointment</span> {{appointment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Start Time</span></dt>
+        <dd>
+            <span>{{appointment.startTime | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>End Time</span></dt>
+        <dd>
+            <span>{{appointment.endTime | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Notes</span></dt>
+        <dd>
+            <span>{{appointment.notes}}</span>
+        </dd>
+        <dt><span>Image</span></dt>
+        <dd>
+            <div *ngIf="appointment.image">
+                <a [routerLink]="['/image', appointment.image?.id]">{{appointment.image?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Employee</span></dt>
+        <dd>
+            <div *ngIf="appointment.employee">
+                <a [routerLink]="['/employee', appointment.employee?.id]">{{appointment.employee?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Pool</span></dt>
+        <dd>
+            <div *ngIf="appointment.pool">
+                <a [routerLink]="['/pool', appointment.pool?.id]">{{appointment.pool?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Inventory Used</span></dt>
+        <dd>
+            <span *ngFor="let inventoryUsed of appointment.inventoryUseds; let last = last">
+                <a [routerLink]="['/inventory-used', inventoryUsed?.id ]">{{inventoryUsed.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'appointment/'+ appointment.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
