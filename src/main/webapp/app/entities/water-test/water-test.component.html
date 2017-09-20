@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span>Water Tests</span>
+        <button class="btn btn-primary float-right jh-create-entity create-water-test" [routerLink]="['/', { outlets: { popup: ['water-test-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Water Test
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="waterTests">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Ph</span></th>
+            <th><span>Chlorine</span></th>
+            <th><span>Total Alkalinity</span></th>
+            <th><span>Calcium Hardness</span></th>
+            <th><span>Cyanuric Acid</span></th>
+            <th><span>Total Dissolved Solids</span></th>
+            <th><span>Date Time</span></th>
+            <th><span>Appointment</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let waterTest of waterTests ;trackBy: trackId">
+                <td><a [routerLink]="['../water-test', waterTest.id ]">{{waterTest.id}}</a></td>
+                <td>{{waterTest.ph}}</td>
+                <td>{{waterTest.chlorine}}</td>
+                <td>{{waterTest.totalAlkalinity}}</td>
+                <td>{{waterTest.calciumHardness}}</td>
+                <td>{{waterTest.cyanuricAcid}}</td>
+                <td>{{waterTest.totalDissolvedSolids}}</td>
+                <td>{{waterTest.dateTime | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="waterTest.appointment">
+                        <a [routerLink]="['../appointment', waterTest.appointment?.id ]" >{{waterTest.appointment?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../water-test', waterTest.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'water-test/'+ waterTest.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'water-test/'+ waterTest.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

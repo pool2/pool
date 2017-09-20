@@ -1,0 +1,55 @@
+
+<div *ngIf="waterTest">
+    <h2><span>Water Test</span> {{waterTest.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Ph</span></dt>
+        <dd>
+            <span>{{waterTest.ph}}</span>
+        </dd>
+        <dt><span>Chlorine</span></dt>
+        <dd>
+            <span>{{waterTest.chlorine}}</span>
+        </dd>
+        <dt><span>Total Alkalinity</span></dt>
+        <dd>
+            <span>{{waterTest.totalAlkalinity}}</span>
+        </dd>
+        <dt><span>Calcium Hardness</span></dt>
+        <dd>
+            <span>{{waterTest.calciumHardness}}</span>
+        </dd>
+        <dt><span>Cyanuric Acid</span></dt>
+        <dd>
+            <span>{{waterTest.cyanuricAcid}}</span>
+        </dd>
+        <dt><span>Total Dissolved Solids</span></dt>
+        <dd>
+            <span>{{waterTest.totalDissolvedSolids}}</span>
+        </dd>
+        <dt><span>Date Time</span></dt>
+        <dd>
+            <span>{{waterTest.dateTime | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Appointment</span></dt>
+        <dd>
+            <div *ngIf="waterTest.appointment">
+                <a [routerLink]="['/appointment', waterTest.appointment?.id]">{{waterTest.appointment?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'water-test/'+ waterTest.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

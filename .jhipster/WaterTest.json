@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "appointment",
+            "otherEntityName": "appointment",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "ph",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "chlorine",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "totalAlkalinity",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "calciumHardness",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "cyanuricAcid",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "totalDissolvedSolids",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "dateTime",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170920174907",
+    "entityTableName": "water_test",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

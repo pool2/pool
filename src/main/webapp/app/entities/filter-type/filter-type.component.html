@@ -1,0 +1,62 @@
+<div>
+    <h2>
+        <span>Filter Types</span>
+        <button class="btn btn-primary float-right jh-create-entity create-filter-type" [routerLink]="['/', { outlets: { popup: ['filter-type-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Filter Type
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="filterTypes">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Filter</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let filterType of filterTypes ;trackBy: trackId">
+                <td><a [routerLink]="['../filter-type', filterType.id ]">{{filterType.id}}</a></td>
+                <td>{{filterType.name}}</td>
+                <td>
+                    <div *ngIf="filterType.filter">
+                        <a [routerLink]="['../filter', filterType.filter?.id ]" >{{filterType.filter?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../filter-type', filterType.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'filter-type/'+ filterType.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'filter-type/'+ filterType.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

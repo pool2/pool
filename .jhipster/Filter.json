@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "filterType",
+            "otherEntityName": "filterType",
+            "otherEntityRelationshipName": "filter"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "filterBrand",
+            "otherEntityName": "filterBrand",
+            "otherEntityRelationshipName": "filter"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "note",
+            "otherEntityName": "note",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "size",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "modelNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "replacedDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170920174856",
+    "entityTableName": "filter",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}
