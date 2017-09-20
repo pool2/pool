@@ -30,6 +30,13 @@
                 <option [ngValue]="inventoryItemOption.id === inventoryUsed.inventoryItem?.id ? inventoryUsed.inventoryItem : inventoryItemOption" *ngFor="let inventoryItemOption of inventoryitems; trackBy: trackInventoryItemById">{{inventoryItemOption.id}}</option>
             </select>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_note">Note</label>
+            <select class="form-control" id="field_note" name="note" [(ngModel)]="inventoryUsed.note" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="noteOption.id === inventoryUsed.note?.id ? inventoryUsed.note : noteOption" *ngFor="let noteOption of notes; trackBy: trackNoteById">{{noteOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

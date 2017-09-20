@@ -4,19 +4,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <!--
-        Added the constraints for entity Pool.
+        Added the constraints for entity Filter.
     -->
-    <changeSet id="20170919205625-2" author="jhipster">
+    <changeSet id="20170920174856-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="customer_id"
-                                 baseTableName="pool"
-                                 constraintName="fk_pool_customer_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="customer"/>
-
         <addForeignKeyConstraint baseColumnNames="note_id"
-                                 baseTableName="pool"
-                                 constraintName="fk_pool_note_id"
+                                 baseTableName="filter"
+                                 constraintName="fk_filter_note_id"
                                  referencedColumnNames="id"
                                  referencedTableName="note"/>
 

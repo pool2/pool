@@ -6,6 +6,12 @@
             "otherEntityName": "customer",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "note",
+            "otherEntityName": "note",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

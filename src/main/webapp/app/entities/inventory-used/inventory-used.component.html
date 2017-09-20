@@ -20,6 +20,7 @@
             <th><span>Name</span></th>
             <th><span>Quantity</span></th>
             <th><span>Inventory Item</span></th>
+            <th><span>Note</span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,6 +32,11 @@
                 <td>
                     <div *ngIf="inventoryUsed.inventoryItem">
                         <a [routerLink]="['../inventory-item', inventoryUsed.inventoryItem?.id ]" >{{inventoryUsed.inventoryItem?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="inventoryUsed.note">
+                        <a [routerLink]="['../note', inventoryUsed.note?.id ]" >{{inventoryUsed.note?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

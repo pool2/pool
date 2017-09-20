@@ -5,6 +5,7 @@ export class Pool implements BaseEntity {
         public id?: number,
         public size?: number,
         public customer?: BaseEntity,
+        public note?: BaseEntity,
     ) {
     }
 }

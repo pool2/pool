@@ -19,11 +19,13 @@
             <th><span>ID</span></th>
             <th><span>Start Time</span></th>
             <th><span>End Time</span></th>
-            <th><span>Notes</span></th>
             <th><span>Image</span></th>
+            <th><span>Water Test</span></th>
             <th><span>Employee</span></th>
             <th><span>Pool</span></th>
+            <th><span>Note</span></th>
             <th><span>Inventory Used</span></th>
+            <th><span>Task</span></th>
             <th></th>
             </tr>
             </thead>
@@ -32,10 +34,14 @@
                 <td><a [routerLink]="['../appointment', appointment.id ]">{{appointment.id}}</a></td>
                 <td>{{appointment.startTime | date:'mediumDate'}}</td>
                 <td>{{appointment.endTime | date:'mediumDate'}}</td>
-                <td>{{appointment.notes}}</td>
                 <td>
                     <div *ngIf="appointment.image">
                         <a [routerLink]="['../image', appointment.image?.id ]" >{{appointment.image?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="appointment.waterTest">
+                        <a [routerLink]="['../water-test', appointment.waterTest?.id ]" >{{appointment.waterTest?.id}}</a>
                     </div>
                 </td>
                 <td>
@@ -49,8 +55,18 @@
                     </div>
                 </td>
                 <td>
+                    <div *ngIf="appointment.note">
+                        <a [routerLink]="['../note', appointment.note?.id ]" >{{appointment.note?.id}}</a>
+                    </div>
+                </td>
+                <td>
                     <span *ngFor="let inventoryUsed of appointment.inventoryUseds; let last = last">
                             <a class="form-control-static" [routerLink]="['../inventory-used', inventoryUsed?.id ]">{{inventoryUsed.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let task of appointment.tasks; let last = last">
+                            <a class="form-control-static" [routerLink]="['../task', task?.id ]">{{task.id}}</a>{{last ? '' : ', '}}
                         </span>
                 </td>
                 <td class="text-right">

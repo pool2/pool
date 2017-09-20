@@ -6,6 +6,12 @@
             "relationshipName": "inventoryItem",
             "otherEntityName": "inventoryItem",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "note",
+            "otherEntityName": "note",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

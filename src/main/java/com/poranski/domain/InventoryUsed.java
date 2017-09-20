@@ -27,6 +27,9 @@ public class InventoryUsed implements Serializable {
     @ManyToOne
     private InventoryItem inventoryItem;
 
+    @ManyToOne
+    private Note note;
+
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -73,6 +76,19 @@ public class InventoryUsed implements Serializable {
 
     public void setInventoryItem(InventoryItem inventoryItem) {
         this.inventoryItem = inventoryItem;
+    }
+
+    public Note getNote() {
+        return note;
+    }
+
+    public InventoryUsed note(Note note) {
+        this.note = note;
+        return this;
+    }
+
+    public void setNote(Note note) {
+        this.note = note;
     }
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 

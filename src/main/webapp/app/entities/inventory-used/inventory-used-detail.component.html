@@ -18,6 +18,12 @@
                 <a [routerLink]="['/inventory-item', inventoryUsed.inventoryItem?.id]">{{inventoryUsed.inventoryItem?.id}}</a>
             </div>
         </dd>
+        <dt><span>Note</span></dt>
+        <dd>
+            <div *ngIf="inventoryUsed.note">
+                <a [routerLink]="['/note', inventoryUsed.note?.id]">{{inventoryUsed.note?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

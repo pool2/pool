@@ -10,6 +10,7 @@ import { Pool } from './pool.model';
 import { PoolPopupService } from './pool-popup.service';
 import { PoolService } from './pool.service';
 import { Customer, CustomerService } from '../customer';
+import { Note, NoteService } from '../note';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -23,11 +24,14 @@ export class PoolDialogComponent implements OnInit {
 
     customers: Customer[];
 
+    notes: Note[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private poolService: PoolService,
         private customerService: CustomerService,
+        private noteService: NoteService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,6 +40,8 @@ export class PoolDialogComponent implements OnInit {
         this.isSaving = false;
         this.customerService.query()
             .subscribe((res: ResponseWrapper) => { this.customers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.noteService.query()
+            .subscribe((res: ResponseWrapper) => { this.notes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -73,6 +79,10 @@ export class PoolDialogComponent implements OnInit {
     }
 
     trackCustomerById(index: number, item: Customer) {
+        return item.id;
+    }
+
+    trackNoteById(index: number, item: Note) {
         return item.id;
     }
 }

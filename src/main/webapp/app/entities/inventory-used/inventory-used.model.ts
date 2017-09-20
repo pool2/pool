@@ -6,6 +6,7 @@ export class InventoryUsed implements BaseEntity {
         public name?: string,
         public quantity?: number,
         public inventoryItem?: BaseEntity,
+        public note?: BaseEntity,
     ) {
     }
 }

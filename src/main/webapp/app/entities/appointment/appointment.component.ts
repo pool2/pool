@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService } from 'ng-jhipster';
 
 import { Appointment } from './appointment.model';
 import { AppointmentService } from './appointment.service';
@@ -20,7 +20,6 @@ appointments: Appointment[];
     constructor(
         private appointmentService: AppointmentService,
         private alertService: JhiAlertService,
-        private dataUtils: JhiDataUtils,
         private eventManager: JhiEventManager,
         private principal: Principal
     ) {
@@ -48,14 +47,6 @@ appointments: Appointment[];
 
     trackId(index: number, item: Appointment) {
         return item.id;
-    }
-
-    byteSize(field) {
-        return this.dataUtils.byteSize(field);
-    }
-
-    openFile(contentType, field) {
-        return this.dataUtils.openFile(contentType, field);
     }
     registerChangeInAppointments() {
         this.eventSubscriber = this.eventManager.subscribe('appointmentListModification', (response) => this.loadAll());

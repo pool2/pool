@@ -24,6 +24,9 @@ public class Pool implements Serializable {
     @ManyToOne
     private Customer customer;
 
+    @ManyToOne
+    private Note note;
+
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -57,6 +60,19 @@ public class Pool implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Note getNote() {
+        return note;
+    }
+
+    public Pool note(Note note) {
+        this.note = note;
+        return this;
+    }
+
+    public void setNote(Note note) {
+        this.note = note;
     }
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 

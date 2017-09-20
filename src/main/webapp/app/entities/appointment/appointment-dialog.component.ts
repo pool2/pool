@@ -4,15 +4,18 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Appointment } from './appointment.model';
 import { AppointmentPopupService } from './appointment-popup.service';
 import { AppointmentService } from './appointment.service';
 import { Image, ImageService } from '../image';
+import { WaterTest, WaterTestService } from '../water-test';
 import { Employee, EmployeeService } from '../employee';
 import { Pool, PoolService } from '../pool';
+import { Note, NoteService } from '../note';
 import { InventoryUsed, InventoryUsedService } from '../inventory-used';
+import { Task, TaskService } from '../task';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -26,23 +29,31 @@ export class AppointmentDialogComponent implements OnInit {
 
     images: Image[];
 
+    watertests: WaterTest[];
+
     employees: Employee[];
 
     pools: Pool[];
 
+    notes: Note[];
+
     inventoryuseds: InventoryUsed[];
+
+    tasks: Task[];
     startTimeDp: any;
     endTimeDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
-        private dataUtils: JhiDataUtils,
         private alertService: JhiAlertService,
         private appointmentService: AppointmentService,
         private imageService: ImageService,
+        private waterTestService: WaterTestService,
         private employeeService: EmployeeService,
         private poolService: PoolService,
+        private noteService: NoteService,
         private inventoryUsedService: InventoryUsedService,
+        private taskService: TaskService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -62,24 +73,29 @@ export class AppointmentDialogComponent implements OnInit {
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
+        this.waterTestService
+            .query({filter: 'appointment-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.appointment.waterTest || !this.appointment.waterTest.id) {
+                    this.watertests = res.json;
+                } else {
+                    this.waterTestService
+                        .find(this.appointment.waterTest.id)
+                        .subscribe((subRes: WaterTest) => {
+                            this.watertests = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
         this.employeeService.query()
             .subscribe((res: ResponseWrapper) => { this.employees = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.poolService.query()
             .subscribe((res: ResponseWrapper) => { this.pools = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.noteService.query()
+            .subscribe((res: ResponseWrapper) => { this.notes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.inventoryUsedService.query()
             .subscribe((res: ResponseWrapper) => { this.inventoryuseds = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-    }
-
-    byteSize(field) {
-        return this.dataUtils.byteSize(field);
-    }
-
-    openFile(contentType, field) {
-        return this.dataUtils.openFile(contentType, field);
-    }
-
-    setFileData(event, entity, field, isImage) {
-        this.dataUtils.setFileData(event, entity, field, isImage);
+        this.taskService.query()
+            .subscribe((res: ResponseWrapper) => { this.tasks = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -120,6 +136,10 @@ export class AppointmentDialogComponent implements OnInit {
         return item.id;
     }
 
+    trackWaterTestById(index: number, item: WaterTest) {
+        return item.id;
+    }
+
     trackEmployeeById(index: number, item: Employee) {
         return item.id;
     }
@@ -128,7 +148,15 @@ export class AppointmentDialogComponent implements OnInit {
         return item.id;
     }
 
+    trackNoteById(index: number, item: Note) {
+        return item.id;
+    }
+
     trackInventoryUsedById(index: number, item: InventoryUsed) {
+        return item.id;
+    }
+
+    trackTaskById(index: number, item: Task) {
         return item.id;
     }
 

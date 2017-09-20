@@ -15,29 +15,24 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Employee.
+        Added the entity FilterType.
     -->
-    <changeSet id="20170919205630-1" author="jhipster">
-        <createTable tableName="employee">
+    <changeSet id="20170920174858-1" author="jhipster">
+        <createTable tableName="filter_type">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="phone_number" type="varchar(255)">
+            <column name="name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="company_id" type="bigint">
+            <column name="filter_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="user_id" type="bigint">
-                <constraints unique="true" nullable="true" />
-            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-       	<loadData encoding="UTF-8"
-                  file="config/liquibase/employee.csv"
-                  separator=";"
-		  tableName="employee"/>  
+<loadData tableName="filter_type" separator=";" file="config/liquibase/filterType.csv" encoding="UTF-8"/>        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

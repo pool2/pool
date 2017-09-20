@@ -12,14 +12,16 @@
         <dd>
             <span>{{appointment.endTime | date:'mediumDate'}}</span>
         </dd>
-        <dt><span>Notes</span></dt>
-        <dd>
-            <span>{{appointment.notes}}</span>
-        </dd>
         <dt><span>Image</span></dt>
         <dd>
             <div *ngIf="appointment.image">
                 <a [routerLink]="['/image', appointment.image?.id]">{{appointment.image?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Water Test</span></dt>
+        <dd>
+            <div *ngIf="appointment.waterTest">
+                <a [routerLink]="['/water-test', appointment.waterTest?.id]">{{appointment.waterTest?.id}}</a>
             </div>
         </dd>
         <dt><span>Employee</span></dt>
@@ -34,10 +36,22 @@
                 <a [routerLink]="['/pool', appointment.pool?.id]">{{appointment.pool?.id}}</a>
             </div>
         </dd>
+        <dt><span>Note</span></dt>
+        <dd>
+            <div *ngIf="appointment.note">
+                <a [routerLink]="['/note', appointment.note?.id]">{{appointment.note?.id}}</a>
+            </div>
+        </dd>
         <dt><span>Inventory Used</span></dt>
         <dd>
             <span *ngFor="let inventoryUsed of appointment.inventoryUseds; let last = last">
                 <a [routerLink]="['/inventory-used', inventoryUsed?.id ]">{{inventoryUsed.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Task</span></dt>
+        <dd>
+            <span *ngFor="let task of appointment.tasks; let last = last">
+                <a [routerLink]="['/task', task?.id ]">{{task.id}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
     </dl>

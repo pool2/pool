@@ -14,6 +14,12 @@
                 <a [routerLink]="['/customer', pool.customer?.id]">{{pool.customer?.id}}</a>
             </div>
         </dd>
+        <dt><span>Note</span></dt>
+        <dd>
+            <div *ngIf="pool.note">
+                <a [routerLink]="['/note', pool.note?.id]">{{pool.note?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"
