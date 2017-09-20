@@ -13,4 +13,6 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
+    @Query(value = "select e from Employee e where e.user.login = ?1")
+    Employee findOneByUserLogin(String login);
 }

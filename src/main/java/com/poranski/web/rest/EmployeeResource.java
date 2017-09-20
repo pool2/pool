@@ -102,6 +102,14 @@ public class EmployeeResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(employee));
     }
 
+    @GetMapping("/employees/user/{login}")
+    @Timed
+    public ResponseEntity<Employee> getEmployeeFromUserId(@PathVariable String login) {
+        log.debug("REST request to get Employee from User Login: {}", login);
+        Employee employee = employeeRepository.findOneByUserLogin(login);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(employee));
+    }
+
     /**
      * DELETE  /employees/:id : delete the "id" employee.
      *
