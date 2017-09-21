@@ -13,16 +13,20 @@
                    [(ngModel)]="pool.id" readonly />
         </div>
         <div class="form-group">
+            <label class="form-control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="pool.name"  />
+        </div>
+        <div class="form-group">
             <label class="form-control-label" for="field_size">Size</label>
             <input type="number" class="form-control" name="size" id="field_size"
                 [(ngModel)]="pool.size"  />
         </div>
-
         <div class="form-group">
-            <label class="form-control-label" for="field_customer">Customer</label>
-            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="pool.customer" >
+            <label class="form-control-label" for="field_material">Material</label>
+            <select class="form-control" id="field_material" name="material" [(ngModel)]="pool.material" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="customerOption.id === pool.customer?.id ? pool.customer : customerOption" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+                <option [ngValue]="materialOption.id === pool.material?.id ? pool.material : materialOption" *ngFor="let materialOption of materials; trackBy: trackMaterialById">{{materialOption.name}}</option>
             </select>
         </div>
         <div class="form-group">

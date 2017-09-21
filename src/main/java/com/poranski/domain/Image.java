@@ -25,6 +25,9 @@ public class Image implements Serializable {
     @Column(name = "image_content_type")
     private String imageContentType;
 
+    @ManyToOne
+    private Appointment appointment;
+
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -58,6 +61,19 @@ public class Image implements Serializable {
 
     public void setImageContentType(String imageContentType) {
         this.imageContentType = imageContentType;
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public Image appointment(Appointment appointment) {
+        this.appointment = appointment;
+        return this;
+    }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
     }
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 

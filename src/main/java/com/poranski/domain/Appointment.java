@@ -30,15 +30,15 @@ public class Appointment implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Image image;
-
-    @OneToOne
-    @JoinColumn(unique = true)
     private WaterTest waterTest;
 
     @OneToMany(mappedBy = "appointment")
     @JsonIgnore
     private Set<WaterTest> waterTests = new HashSet<>();
+
+    @OneToMany(mappedBy = "appointment")
+    @JsonIgnore
+    private Set<Image> images = new HashSet<>();
 
     @ManyToOne
     private Employee employee;
@@ -96,19 +96,6 @@ public class Appointment implements Serializable {
         this.endTime = endTime;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-    public Appointment image(Image image) {
-        this.image = image;
-        return this;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
     public WaterTest getWaterTest() {
         return waterTest;
     }
@@ -145,6 +132,31 @@ public class Appointment implements Serializable {
 
     public void setWaterTests(Set<WaterTest> waterTests) {
         this.waterTests = waterTests;
+    }
+
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public Appointment images(Set<Image> images) {
+        this.images = images;
+        return this;
+    }
+
+    public Appointment addImage(Image image) {
+        this.images.add(image);
+        image.setAppointment(this);
+        return this;
+    }
+
+    public Appointment removeImage(Image image) {
+        this.images.remove(image);
+        image.setAppointment(null);
+        return this;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
     }
 
     public Employee getEmployee() {

@@ -21,9 +21,6 @@ public class FilterType implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
-    private Filter filter;
-
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -44,19 +41,6 @@ public class FilterType implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Filter getFilter() {
-        return filter;
-    }
-
-    public FilterType filter(Filter filter) {
-        this.filter = filter;
-        return this;
-    }
-
-    public void setFilter(Filter filter) {
-        this.filter = filter;
     }
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 

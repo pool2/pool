@@ -4,7 +4,6 @@ export class FilterBrand implements BaseEntity {
     constructor(
         public id?: number,
         public name?: string,
-        public filter?: BaseEntity,
     ) {
     }
 }

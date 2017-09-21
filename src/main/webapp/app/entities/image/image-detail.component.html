@@ -13,6 +13,12 @@
                 {{image.imageContentType}}, {{byteSize(image.image)}}
             </div>
         </dd>
+        <dt><span>Appointment</span></dt>
+        <dd>
+            <div *ngIf="image.appointment">
+                <a [routerLink]="['/appointment', image.appointment?.id]">{{image.appointment?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

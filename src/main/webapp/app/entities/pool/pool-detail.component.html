@@ -4,14 +4,24 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{pool.name}}</span>
+        </dd>
         <dt><span>Size</span></dt>
         <dd>
             <span>{{pool.size}}</span>
         </dd>
-        <dt><span>Customer</span></dt>
+        <dt><span>Filter</span></dt>
         <dd>
-            <div *ngIf="pool.customer">
-                <a [routerLink]="['/customer', pool.customer?.id]">{{pool.customer?.id}}</a>
+            <div *ngIf="pool.filter">
+                <a [routerLink]="['/filter', pool.filter?.id]">{{pool.filter?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Material</span></dt>
+        <dd>
+            <div *ngIf="pool.material">
+                <a [routerLink]="['/material', pool.material?.id]">{{pool.material?.id}}</a>
             </div>
         </dd>
         <dt><span>Note</span></dt>
@@ -21,7 +31,6 @@
             </div>
         </dd>
     </dl>
-
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">

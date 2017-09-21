@@ -26,6 +26,9 @@ pools: Pool[];
     }
 
     loadAll() {
+
+        this.poolService.logThis('I am here');
+
         this.poolService.query().subscribe(
             (res: ResponseWrapper) => {
                 this.pools = res.json;

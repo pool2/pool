@@ -14,5 +14,17 @@
                                  referencedColumnNames="id"
                                  referencedTableName="note"/>
 
+        <addForeignKeyConstraint baseColumnNames="filter_brand_id"
+                                 baseTableName="filter"
+                                 constraintName="fk_filter_filter_brand_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="filter_brand"/>
+
+        <addForeignKeyConstraint baseColumnNames="filter_type_id"
+                                 baseTableName="filter"
+                                 constraintName="fk_filter_filter_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="filter_type"/>
+
     </changeSet>
 </databaseChangeLog>

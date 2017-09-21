@@ -34,13 +34,6 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" for="field_image">Image</label>
-            <select class="form-control" id="field_image" name="image" [(ngModel)]="appointment.image">
-                <option [ngValue]="null"></option>
-                <option [ngValue]="imageOption.id === appointment.image?.id ? appointment.image : imageOption" *ngFor="let imageOption of images; trackBy: trackImageById">{{imageOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" for="field_waterTest">Water Test</label>
             <select class="form-control" id="field_waterTest" name="waterTest" [(ngModel)]="appointment.waterTest">
                 <option [ngValue]="null"></option>

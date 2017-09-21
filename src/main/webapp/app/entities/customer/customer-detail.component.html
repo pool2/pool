@@ -1,59 +1,38 @@
 
 <div *ngIf="customer">
-    <h2><span>Customer</span> {{customer.id}}</h2>
+    <h2>{{customer.firstName}} {{customer.lastName}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span>First Name</span></dt>
-        <dd>
-            <span>{{customer.firstName}}</span>
-        </dd>
-        <dt><span>Last Name</span></dt>
-        <dd>
-            <span>{{customer.lastName}}</span>
-        </dd>
-        <dt><span>Phone Number</span></dt>
-        <dd>
-            <span>{{customer.phoneNumber}}</span>
-        </dd>
-        <dt><span>Address 1</span></dt>
-        <dd>
-            <span>{{customer.address1}}</span>
-        </dd>
-        <dt><span>Address 2</span></dt>
-        <dd>
-            <span>{{customer.address2}}</span>
-        </dd>
-        <dt><span>Address 3</span></dt>
-        <dd>
-            <span>{{customer.address3}}</span>
-        </dd>
-        <dt><span>City</span></dt>
-        <dd>
-            <span>{{customer.city}}</span>
-        </dd>
-        <dt><span>State</span></dt>
-        <dd>
-            <span>{{customer.state}}</span>
-        </dd>
-        <dt><span>Company</span></dt>
-        <dd>
-            <div *ngIf="customer.company">
-                <a [routerLink]="['/company', customer.company?.id]">{{customer.company?.id}}</a>
-            </div>
-        </dd>
-    </dl>
+    <jhi-pool></jhi-pool>
+    <table>
+        <tr><td>{{customer.address1}} {{customer.address2}} {{customer.address3}}</td></tr>
+        <tr><td>{{customer.city}}, {{customer.state}} {{customer.zip}}</td></tr>
+        <tr><td><a href="mailto:{{customer.email}}">{{customer.email}}</a></td></tr>
+        <tr><td>{{customer.phoneNumber}} {{customer.altPhoneNumber}}</td></tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr><td>
 
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
-    </button>
+        <button class="btn btn-primary float-right jh-create-entity create-pool" [routerLink]="['/', { outlets: { popup: ['pool-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span > Add Pool </span>
+        </button>
+        </td></tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr><td>
 
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'customer/'+ customer.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
-    </button>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/', { outlets: { popup: 'customer/'+ customer.id + '/edit'} }]"
+                    replaceUrl="true"
+                    class="btn btn-primary">
+                <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+            </button>
+        </td></tr>
+        </tr>
+    </table>
 </div>

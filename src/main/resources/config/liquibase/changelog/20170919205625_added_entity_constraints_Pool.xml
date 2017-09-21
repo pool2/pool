@@ -14,6 +14,18 @@
                                  referencedColumnNames="id"
                                  referencedTableName="customer"/>
 
+        <addForeignKeyConstraint baseColumnNames="filter_id"
+                                 baseTableName="pool"
+                                 constraintName="fk_pool_filter_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="filter"/>
+
+        <addForeignKeyConstraint baseColumnNames="material_id"
+                                 baseTableName="pool"
+                                 constraintName="fk_pool_material_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="material"/>
+
         <addForeignKeyConstraint baseColumnNames="note_id"
                                  baseTableName="pool"
                                  constraintName="fk_pool_note_id"

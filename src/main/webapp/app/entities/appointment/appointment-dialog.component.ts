@@ -9,7 +9,6 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Appointment } from './appointment.model';
 import { AppointmentPopupService } from './appointment-popup.service';
 import { AppointmentService } from './appointment.service';
-import { Image, ImageService } from '../image';
 import { WaterTest, WaterTestService } from '../water-test';
 import { Employee, EmployeeService } from '../employee';
 import { Pool, PoolService } from '../pool';
@@ -26,8 +25,6 @@ export class AppointmentDialogComponent implements OnInit {
 
     appointment: Appointment;
     isSaving: boolean;
-
-    images: Image[];
 
     watertests: WaterTest[];
 
@@ -47,7 +44,6 @@ export class AppointmentDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private appointmentService: AppointmentService,
-        private imageService: ImageService,
         private waterTestService: WaterTestService,
         private employeeService: EmployeeService,
         private poolService: PoolService,
@@ -60,19 +56,6 @@ export class AppointmentDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.imageService
-            .query({filter: 'appointment-is-null'})
-            .subscribe((res: ResponseWrapper) => {
-                if (!this.appointment.image || !this.appointment.image.id) {
-                    this.images = res.json;
-                } else {
-                    this.imageService
-                        .find(this.appointment.image.id)
-                        .subscribe((subRes: Image) => {
-                            this.images = [subRes].concat(res.json);
-                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
-                }
-            }, (res: ResponseWrapper) => this.onError(res.json));
         this.waterTestService
             .query({filter: 'appointment-is-null'})
             .subscribe((res: ResponseWrapper) => {
@@ -130,10 +113,6 @@ export class AppointmentDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.alertService.error(error.message, null, null);
-    }
-
-    trackImageById(index: number, item: Image) {
-        return item.id;
     }
 
     trackWaterTestById(index: number, item: WaterTest) {

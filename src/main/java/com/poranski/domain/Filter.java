@@ -1,12 +1,9 @@
 package com.poranski.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -31,19 +28,20 @@ public class Filter implements Serializable {
     @Column(name = "model_number")
     private String modelNumber;
 
+    @Column(name = "brand")
+    private String brand;
+
     @Column(name = "replaced_date")
     private LocalDate replacedDate;
 
-    @OneToMany(mappedBy = "filter")
-    @JsonIgnore
-    private Set<FilterType> filterTypes = new HashSet<>();
-
-    @OneToMany(mappedBy = "filter")
-    @JsonIgnore
-    private Set<FilterBrand> filterBrands = new HashSet<>();
-
     @ManyToOne
     private Note note;
+
+    @ManyToOne
+    private FilterBrand filterBrand;
+
+    @ManyToOne
+    private FilterType filterType;
 
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
@@ -93,6 +91,19 @@ public class Filter implements Serializable {
         this.modelNumber = modelNumber;
     }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public Filter brand(String brand) {
+        this.brand = brand;
+        return this;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public LocalDate getReplacedDate() {
         return replacedDate;
     }
@@ -106,56 +117,6 @@ public class Filter implements Serializable {
         this.replacedDate = replacedDate;
     }
 
-    public Set<FilterType> getFilterTypes() {
-        return filterTypes;
-    }
-
-    public Filter filterTypes(Set<FilterType> filterTypes) {
-        this.filterTypes = filterTypes;
-        return this;
-    }
-
-    public Filter addFilterType(FilterType filterType) {
-        this.filterTypes.add(filterType);
-        filterType.setFilter(this);
-        return this;
-    }
-
-    public Filter removeFilterType(FilterType filterType) {
-        this.filterTypes.remove(filterType);
-        filterType.setFilter(null);
-        return this;
-    }
-
-    public void setFilterTypes(Set<FilterType> filterTypes) {
-        this.filterTypes = filterTypes;
-    }
-
-    public Set<FilterBrand> getFilterBrands() {
-        return filterBrands;
-    }
-
-    public Filter filterBrands(Set<FilterBrand> filterBrands) {
-        this.filterBrands = filterBrands;
-        return this;
-    }
-
-    public Filter addFilterBrand(FilterBrand filterBrand) {
-        this.filterBrands.add(filterBrand);
-        filterBrand.setFilter(this);
-        return this;
-    }
-
-    public Filter removeFilterBrand(FilterBrand filterBrand) {
-        this.filterBrands.remove(filterBrand);
-        filterBrand.setFilter(null);
-        return this;
-    }
-
-    public void setFilterBrands(Set<FilterBrand> filterBrands) {
-        this.filterBrands = filterBrands;
-    }
-
     public Note getNote() {
         return note;
     }
@@ -167,6 +128,32 @@ public class Filter implements Serializable {
 
     public void setNote(Note note) {
         this.note = note;
+    }
+
+    public FilterBrand getFilterBrand() {
+        return filterBrand;
+    }
+
+    public Filter filterBrand(FilterBrand filterBrand) {
+        this.filterBrand = filterBrand;
+        return this;
+    }
+
+    public void setFilterBrand(FilterBrand filterBrand) {
+        this.filterBrand = filterBrand;
+    }
+
+    public FilterType getFilterType() {
+        return filterType;
+    }
+
+    public Filter filterType(FilterType filterType) {
+        this.filterType = filterType;
+        return this;
+    }
+
+    public void setFilterType(FilterType filterType) {
+        this.filterType = filterType;
     }
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 
@@ -197,6 +184,7 @@ public class Filter implements Serializable {
             ", type='" + getType() + "'" +
             ", size='" + getSize() + "'" +
             ", modelNumber='" + getModelNumber() + "'" +
+            ", brand='" + getBrand() + "'" +
             ", replacedDate='" + getReplacedDate() + "'" +
             "}";
     }

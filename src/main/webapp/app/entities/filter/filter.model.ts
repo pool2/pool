@@ -6,10 +6,11 @@ export class Filter implements BaseEntity {
         public type?: string,
         public size?: number,
         public modelNumber?: string,
+        public brand?: string,
         public replacedDate?: any,
-        public filterTypes?: BaseEntity[],
-        public filterBrands?: BaseEntity[],
         public note?: BaseEntity,
+        public filterBrand?: BaseEntity,
+        public filterType?: BaseEntity,
     ) {
     }
 }

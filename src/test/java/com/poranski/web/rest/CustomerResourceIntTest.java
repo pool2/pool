@@ -46,6 +46,12 @@ public class CustomerResourceIntTest {
     private static final String DEFAULT_PHONE_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_PHONE_NUMBER = "BBBBBBBBBB";
 
+    private static final String DEFAULT_ALT_PHONE_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_ALT_PHONE_NUMBER = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
     private static final String DEFAULT_ADDRESS_1 = "AAAAAAAAAA";
     private static final String UPDATED_ADDRESS_1 = "BBBBBBBBBB";
 
@@ -60,6 +66,9 @@ public class CustomerResourceIntTest {
 
     private static final String DEFAULT_STATE = "AAAAAAAAAA";
     private static final String UPDATED_STATE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ZIP = "AAAAAAAAAA";
+    private static final String UPDATED_ZIP = "BBBBBBBBBB";
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -101,11 +110,14 @@ public class CustomerResourceIntTest {
             .firstName(DEFAULT_FIRST_NAME)
             .lastName(DEFAULT_LAST_NAME)
             .phoneNumber(DEFAULT_PHONE_NUMBER)
+            .altPhoneNumber(DEFAULT_ALT_PHONE_NUMBER)
+            .email(DEFAULT_EMAIL)
             .address1(DEFAULT_ADDRESS_1)
             .address2(DEFAULT_ADDRESS_2)
             .address3(DEFAULT_ADDRESS_3)
             .city(DEFAULT_CITY)
-            .state(DEFAULT_STATE);
+            .state(DEFAULT_STATE)
+            .zip(DEFAULT_ZIP);
         return customer;
     }
 
@@ -132,11 +144,14 @@ public class CustomerResourceIntTest {
         assertThat(testCustomer.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
         assertThat(testCustomer.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testCustomer.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
+        assertThat(testCustomer.getAltPhoneNumber()).isEqualTo(DEFAULT_ALT_PHONE_NUMBER);
+        assertThat(testCustomer.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testCustomer.getAddress1()).isEqualTo(DEFAULT_ADDRESS_1);
         assertThat(testCustomer.getAddress2()).isEqualTo(DEFAULT_ADDRESS_2);
         assertThat(testCustomer.getAddress3()).isEqualTo(DEFAULT_ADDRESS_3);
         assertThat(testCustomer.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testCustomer.getState()).isEqualTo(DEFAULT_STATE);
+        assertThat(testCustomer.getZip()).isEqualTo(DEFAULT_ZIP);
     }
 
     @Test
@@ -208,11 +223,14 @@ public class CustomerResourceIntTest {
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.toString())))
+            .andExpect(jsonPath("$.[*].altPhoneNumber").value(hasItem(DEFAULT_ALT_PHONE_NUMBER.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].address1").value(hasItem(DEFAULT_ADDRESS_1.toString())))
             .andExpect(jsonPath("$.[*].address2").value(hasItem(DEFAULT_ADDRESS_2.toString())))
             .andExpect(jsonPath("$.[*].address3").value(hasItem(DEFAULT_ADDRESS_3.toString())))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
-            .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE.toString())));
+            .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE.toString())))
+            .andExpect(jsonPath("$.[*].zip").value(hasItem(DEFAULT_ZIP.toString())));
     }
 
     @Test
@@ -229,11 +247,14 @@ public class CustomerResourceIntTest {
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
             .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER.toString()))
+            .andExpect(jsonPath("$.altPhoneNumber").value(DEFAULT_ALT_PHONE_NUMBER.toString()))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.address1").value(DEFAULT_ADDRESS_1.toString()))
             .andExpect(jsonPath("$.address2").value(DEFAULT_ADDRESS_2.toString()))
             .andExpect(jsonPath("$.address3").value(DEFAULT_ADDRESS_3.toString()))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
-            .andExpect(jsonPath("$.state").value(DEFAULT_STATE.toString()));
+            .andExpect(jsonPath("$.state").value(DEFAULT_STATE.toString()))
+            .andExpect(jsonPath("$.zip").value(DEFAULT_ZIP.toString()));
     }
 
     @Test
@@ -257,11 +278,14 @@ public class CustomerResourceIntTest {
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .phoneNumber(UPDATED_PHONE_NUMBER)
+            .altPhoneNumber(UPDATED_ALT_PHONE_NUMBER)
+            .email(UPDATED_EMAIL)
             .address1(UPDATED_ADDRESS_1)
             .address2(UPDATED_ADDRESS_2)
             .address3(UPDATED_ADDRESS_3)
             .city(UPDATED_CITY)
-            .state(UPDATED_STATE);
+            .state(UPDATED_STATE)
+            .zip(UPDATED_ZIP);
 
         restCustomerMockMvc.perform(put("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -275,11 +299,14 @@ public class CustomerResourceIntTest {
         assertThat(testCustomer.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testCustomer.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testCustomer.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
+        assertThat(testCustomer.getAltPhoneNumber()).isEqualTo(UPDATED_ALT_PHONE_NUMBER);
+        assertThat(testCustomer.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testCustomer.getAddress1()).isEqualTo(UPDATED_ADDRESS_1);
         assertThat(testCustomer.getAddress2()).isEqualTo(UPDATED_ADDRESS_2);
         assertThat(testCustomer.getAddress3()).isEqualTo(UPDATED_ADDRESS_3);
         assertThat(testCustomer.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testCustomer.getState()).isEqualTo(UPDATED_STATE);
+        assertThat(testCustomer.getZip()).isEqualTo(UPDATED_ZIP);
     }
 
     @Test

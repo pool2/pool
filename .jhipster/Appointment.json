@@ -3,14 +3,6 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "image",
-            "otherEntityName": "image",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "appointment"
-        },
-        {
-            "relationshipType": "one-to-one",
             "relationshipName": "waterTest",
             "otherEntityName": "waterTest",
             "otherEntityField": "id",
@@ -21,6 +13,12 @@
             "relationshipType": "one-to-many",
             "relationshipName": "waterTest",
             "otherEntityName": "waterTest",
+            "otherEntityRelationshipName": "appointment"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "image",
+            "otherEntityName": "image",
             "otherEntityRelationshipName": "appointment"
         },
         {

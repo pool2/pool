@@ -86,7 +86,13 @@ public class PoolResource {
     public List<Pool> getAllPools() {
         log.debug("REST request to get all Pools");
         return poolRepository.findAll();
-        }
+    }
+
+    @GetMapping("/pools/log/{id}")
+    @Timed
+    public void writeLog(@PathVariable String output) {
+        log.debug("LOGGING --> " + output);
+    }
 
     /**
      * GET  /pools/:id : get the "id" pool.

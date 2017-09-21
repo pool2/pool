@@ -34,6 +34,14 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "altPhoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "address1",
             "fieldType": "String"
         },
@@ -51,6 +59,10 @@
         },
         {
             "fieldName": "state",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "zip",
             "fieldType": "String"
         }
     ],

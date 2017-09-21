@@ -8,6 +8,20 @@
             "otherEntityField": "id"
         },
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "filter",
+            "otherEntityName": "filter",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "pool"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "material",
+            "otherEntityName": "material",
+            "otherEntityField": "id"
+        },
+        {
             "relationshipType": "many-to-one",
             "relationshipName": "note",
             "otherEntityName": "note",
@@ -15,6 +29,10 @@
         }
     ],
     "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
         {
             "fieldName": "size",
             "fieldType": "Integer"

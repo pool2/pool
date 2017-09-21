@@ -34,11 +34,23 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="brand" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="replaced_date" type="date">
                 <constraints nullable="true" />
             </column>
 
             <column name="note_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="filter_brand_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="filter_type_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

@@ -18,7 +18,6 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Name</span></th>
-            <th><span>Filter</span></th>
             <th></th>
             </tr>
             </thead>
@@ -26,11 +25,6 @@
             <tr *ngFor="let filterType of filterTypes ;trackBy: trackId">
                 <td><a [routerLink]="['../filter-type', filterType.id ]">{{filterType.id}}</a></td>
                 <td>{{filterType.name}}</td>
-                <td>
-                    <div *ngIf="filterType.filter">
-                        <a [routerLink]="['../filter', filterType.filter?.id ]" >{{filterType.filter?.id}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

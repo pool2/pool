@@ -18,11 +18,21 @@ public class Pool implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "jhi_size")
     private Integer size;
 
     @ManyToOne
     private Customer customer;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Filter filter;
+
+    @ManyToOne
+    private Material material;
 
     @ManyToOne
     private Note note;
@@ -34,6 +44,19 @@ public class Pool implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Pool name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getSize() {
@@ -60,6 +83,32 @@ public class Pool implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Filter getFilter() {
+        return filter;
+    }
+
+    public Pool filter(Filter filter) {
+        this.filter = filter;
+        return this;
+    }
+
+    public void setFilter(Filter filter) {
+        this.filter = filter;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public Pool material(Material material) {
+        this.material = material;
+        return this;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
     public Note getNote() {
@@ -100,6 +149,7 @@ public class Pool implements Serializable {
     public String toString() {
         return "Pool{" +
             "id=" + getId() +
+            ", name='" + getName() + "'" +
             ", size='" + getSize() + "'" +
             "}";
     }

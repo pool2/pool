@@ -2,21 +2,21 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "filterType",
-            "otherEntityName": "filterType",
-            "otherEntityRelationshipName": "filter"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "filterBrand",
-            "otherEntityName": "filterBrand",
-            "otherEntityRelationshipName": "filter"
-        },
-        {
             "relationshipType": "many-to-one",
             "relationshipName": "note",
             "otherEntityName": "note",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "filterBrand",
+            "otherEntityName": "filterBrand",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "filterType",
+            "otherEntityName": "filterType",
             "otherEntityField": "id"
         }
     ],
@@ -31,6 +31,10 @@
         },
         {
             "fieldName": "modelNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "brand",
             "fieldType": "String"
         },
         {

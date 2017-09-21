@@ -48,6 +48,9 @@ public class FilterResourceIntTest {
     private static final String DEFAULT_MODEL_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_MODEL_NUMBER = "BBBBBBBBBB";
 
+    private static final String DEFAULT_BRAND = "AAAAAAAAAA";
+    private static final String UPDATED_BRAND = "BBBBBBBBBB";
+
     private static final LocalDate DEFAULT_REPLACED_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_REPLACED_DATE = LocalDate.now(ZoneId.systemDefault());
 
@@ -91,6 +94,7 @@ public class FilterResourceIntTest {
             .type(DEFAULT_TYPE)
             .size(DEFAULT_SIZE)
             .modelNumber(DEFAULT_MODEL_NUMBER)
+            .brand(DEFAULT_BRAND)
             .replacedDate(DEFAULT_REPLACED_DATE);
         return filter;
     }
@@ -118,6 +122,7 @@ public class FilterResourceIntTest {
         assertThat(testFilter.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testFilter.getSize()).isEqualTo(DEFAULT_SIZE);
         assertThat(testFilter.getModelNumber()).isEqualTo(DEFAULT_MODEL_NUMBER);
+        assertThat(testFilter.getBrand()).isEqualTo(DEFAULT_BRAND);
         assertThat(testFilter.getReplacedDate()).isEqualTo(DEFAULT_REPLACED_DATE);
     }
 
@@ -154,6 +159,7 @@ public class FilterResourceIntTest {
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].size").value(hasItem(DEFAULT_SIZE)))
             .andExpect(jsonPath("$.[*].modelNumber").value(hasItem(DEFAULT_MODEL_NUMBER.toString())))
+            .andExpect(jsonPath("$.[*].brand").value(hasItem(DEFAULT_BRAND.toString())))
             .andExpect(jsonPath("$.[*].replacedDate").value(hasItem(DEFAULT_REPLACED_DATE.toString())));
     }
 
@@ -171,6 +177,7 @@ public class FilterResourceIntTest {
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
             .andExpect(jsonPath("$.size").value(DEFAULT_SIZE))
             .andExpect(jsonPath("$.modelNumber").value(DEFAULT_MODEL_NUMBER.toString()))
+            .andExpect(jsonPath("$.brand").value(DEFAULT_BRAND.toString()))
             .andExpect(jsonPath("$.replacedDate").value(DEFAULT_REPLACED_DATE.toString()));
     }
 
@@ -195,6 +202,7 @@ public class FilterResourceIntTest {
             .type(UPDATED_TYPE)
             .size(UPDATED_SIZE)
             .modelNumber(UPDATED_MODEL_NUMBER)
+            .brand(UPDATED_BRAND)
             .replacedDate(UPDATED_REPLACED_DATE);
 
         restFilterMockMvc.perform(put("/api/filters")
@@ -209,6 +217,7 @@ public class FilterResourceIntTest {
         assertThat(testFilter.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testFilter.getSize()).isEqualTo(UPDATED_SIZE);
         assertThat(testFilter.getModelNumber()).isEqualTo(UPDATED_MODEL_NUMBER);
+        assertThat(testFilter.getBrand()).isEqualTo(UPDATED_BRAND);
         assertThat(testFilter.getReplacedDate()).isEqualTo(UPDATED_REPLACED_DATE);
     }
 

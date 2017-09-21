@@ -9,6 +9,8 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { Image } from './image.model';
 import { ImagePopupService } from './image-popup.service';
 import { ImageService } from './image.service';
+import { Appointment, AppointmentService } from '../appointment';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-image-dialog',
@@ -19,11 +21,14 @@ export class ImageDialogComponent implements OnInit {
     image: Image;
     isSaving: boolean;
 
+    appointments: Appointment[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private dataUtils: JhiDataUtils,
         private alertService: JhiAlertService,
         private imageService: ImageService,
+        private appointmentService: AppointmentService,
         private elementRef: ElementRef,
         private eventManager: JhiEventManager
     ) {
@@ -31,6 +36,8 @@ export class ImageDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.appointmentService.query()
+            .subscribe((res: ResponseWrapper) => { this.appointments = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     byteSize(field) {
@@ -81,6 +88,10 @@ export class ImageDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackAppointmentById(index: number, item: Appointment) {
+        return item.id;
     }
 }
 

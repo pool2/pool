@@ -39,6 +39,10 @@ export class PoolService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    logThis(s: string) {
+        this.http.get(`${this.resourceUrl}/log/${s}`);
+    }
+
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }

@@ -28,6 +28,11 @@
                 [(ngModel)]="filter.modelNumber"  />
         </div>
         <div class="form-group">
+            <label class="form-control-label" for="field_brand">Brand</label>
+            <input type="text" class="form-control" name="brand" id="field_brand"
+                [(ngModel)]="filter.brand"  />
+        </div>
+        <div class="form-group">
             <label class="form-control-label" for="field_replacedDate">Replaced Date</label>
             <div class="input-group">
                 <input id="field_replacedDate" type="text" class="form-control" name="replacedDate" ngbDatepicker  #replacedDateDp="ngbDatepicker" [(ngModel)]="filter.replacedDate"
@@ -43,6 +48,20 @@
             <select class="form-control" id="field_note" name="note" [(ngModel)]="filter.note" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="noteOption.id === filter.note?.id ? filter.note : noteOption" *ngFor="let noteOption of notes; trackBy: trackNoteById">{{noteOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_filterBrand">Filter Brand</label>
+            <select class="form-control" id="field_filterBrand" name="filterBrand" [(ngModel)]="filter.filterBrand" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="filterBrandOption.id === filter.filterBrand?.id ? filter.filterBrand : filterBrandOption" *ngFor="let filterBrandOption of filterbrands; trackBy: trackFilterBrandById">{{filterBrandOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_filterType">Filter Type</label>
+            <select class="form-control" id="field_filterType" name="filterType" [(ngModel)]="filter.filterType" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="filterTypeOption.id === filter.filterType?.id ? filter.filterType : filterTypeOption" *ngFor="let filterTypeOption of filtertypes; trackBy: trackFilterTypeById">{{filterTypeOption.id}}</option>
             </select>
         </div>
     </div>

@@ -16,35 +16,19 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span>ID</span></th>
-            <th><span>First Name</span></th>
-            <th><span>Last Name</span></th>
-            <th><span>Phone Number</span></th>
-            <th><span>Address 1</span></th>
-            <th><span>Address 2</span></th>
-            <th><span>Address 3</span></th>
-            <th><span>City</span></th>
-            <th><span>State</span></th>
-            <th><span>Company</span></th>
+            <th><span>Name</span></th>
+            <th><span>Phone</span></th>
+            <th><span>Address</span></th>
+            <th><span>Zip</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let customer of customers ;trackBy: trackId">
-                <td><a [routerLink]="['../customer', customer.id ]">{{customer.id}}</a></td>
-                <td>{{customer.firstName}}</td>
-                <td>{{customer.lastName}}</td>
+                <td><a [routerLink]="['../customer', customer.id ]">{{customer.firstName}} {{customer.lastName}}</a></td>
                 <td>{{customer.phoneNumber}}</td>
-                <td>{{customer.address1}}</td>
-                <td>{{customer.address2}}</td>
-                <td>{{customer.address3}}</td>
-                <td>{{customer.city}}</td>
-                <td>{{customer.state}}</td>
-                <td>
-                    <div *ngIf="customer.company">
-                        <a [routerLink]="['../company', customer.company?.id ]" >{{customer.company?.id}}</a>
-                    </div>
-                </td>
+                <td>{{customer.address1}} {{customer.address2}} {{customer.address3}}</td>
+                <td>{{customer.zip}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

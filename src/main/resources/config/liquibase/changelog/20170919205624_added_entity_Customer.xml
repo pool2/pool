@@ -34,6 +34,14 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="alt_phone_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="address_1" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -54,13 +62,18 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="zip" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="company_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+        <loadData tableName="customer" separator=";" file="config/liquibase/customer.csv" encoding="UTF-8"/>
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

@@ -20,8 +20,11 @@
             <th><span>Type</span></th>
             <th><span>Size</span></th>
             <th><span>Model Number</span></th>
+            <th><span>Brand</span></th>
             <th><span>Replaced Date</span></th>
             <th><span>Note</span></th>
+            <th><span>Filter Brand</span></th>
+            <th><span>Filter Type</span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,10 +34,21 @@
                 <td>{{filter.type}}</td>
                 <td>{{filter.size}}</td>
                 <td>{{filter.modelNumber}}</td>
+                <td>{{filter.brand}}</td>
                 <td>{{filter.replacedDate | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="filter.note">
                         <a [routerLink]="['../note', filter.note?.id ]" >{{filter.note?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="filter.filterBrand">
+                        <a [routerLink]="['../filter-brand', filter.filterBrand?.id ]" >{{filter.filterBrand?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="filter.filterType">
+                        <a [routerLink]="['../filter-type', filter.filterType?.id ]" >{{filter.filterType?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

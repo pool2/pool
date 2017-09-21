@@ -29,9 +29,7 @@
             <column name="end_time" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="image_id" type="bigint">
-                <constraints unique="true" nullable="true" />
-            </column>            <column name="water_test_id" type="bigint">
+            <column name="water_test_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>
             <column name="employee_id" type="bigint">

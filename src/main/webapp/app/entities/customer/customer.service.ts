@@ -10,8 +10,17 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 export class CustomerService {
 
     private resourceUrl = SERVER_API_URL + 'api/customers';
+    private customer;
 
     constructor(private http: Http) { }
+
+    setCustomer(customer: Customer) {
+        this.customer = customer;
+    }
+
+    getCustomer(): Customer {
+        return this.customer;
+    }
 
     create(customer: Customer): Observable<Customer> {
         const copy = this.convert(customer);

@@ -12,12 +12,6 @@
         <dd>
             <span>{{appointment.endTime | date:'mediumDate'}}</span>
         </dd>
-        <dt><span>Image</span></dt>
-        <dd>
-            <div *ngIf="appointment.image">
-                <a [routerLink]="['/image', appointment.image?.id]">{{appointment.image?.id}}</a>
-            </div>
-        </dd>
         <dt><span>Water Test</span></dt>
         <dd>
             <div *ngIf="appointment.waterTest">

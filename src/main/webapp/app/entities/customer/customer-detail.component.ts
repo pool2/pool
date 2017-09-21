@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager } from 'ng-jhipster';
-
 import { Customer } from './customer.model';
 import { CustomerService } from './customer.service';
 
@@ -33,6 +32,7 @@ export class CustomerDetailComponent implements OnInit, OnDestroy {
     load(id) {
         this.customerService.find(id).subscribe((customer) => {
             this.customer = customer;
+            this.customerService.setCustomer(this.customer);
         });
     }
     previousState() {
@@ -49,5 +49,6 @@ export class CustomerDetailComponent implements OnInit, OnDestroy {
             'customerListModification',
             (response) => this.load(this.customer.id)
         );
+        this.customerService.setCustomer(this.customer);
     }
 }

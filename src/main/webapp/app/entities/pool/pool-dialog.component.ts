@@ -10,6 +10,8 @@ import { Pool } from './pool.model';
 import { PoolPopupService } from './pool-popup.service';
 import { PoolService } from './pool.service';
 import { Customer, CustomerService } from '../customer';
+import { Filter, FilterService } from '../filter';
+import { Material, MaterialService } from '../material';
 import { Note, NoteService } from '../note';
 import { ResponseWrapper } from '../../shared';
 
@@ -24,6 +26,10 @@ export class PoolDialogComponent implements OnInit {
 
     customers: Customer[];
 
+    filters: Filter[];
+
+    materials: Material[];
+
     notes: Note[];
 
     constructor(
@@ -31,6 +37,8 @@ export class PoolDialogComponent implements OnInit {
         private alertService: JhiAlertService,
         private poolService: PoolService,
         private customerService: CustomerService,
+        private filterService: FilterService,
+        private materialService: MaterialService,
         private noteService: NoteService,
         private eventManager: JhiEventManager
     ) {
@@ -40,6 +48,21 @@ export class PoolDialogComponent implements OnInit {
         this.isSaving = false;
         this.customerService.query()
             .subscribe((res: ResponseWrapper) => { this.customers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.filterService
+            .query({filter: 'pool-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.pool.filter || !this.pool.filter.id) {
+                    this.filters = res.json;
+                } else {
+                    this.filterService
+                        .find(this.pool.filter.id)
+                        .subscribe((subRes: Filter) => {
+                            this.filters = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.materialService.query()
+            .subscribe((res: ResponseWrapper) => { this.materials = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.noteService.query()
             .subscribe((res: ResponseWrapper) => { this.notes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -49,6 +72,11 @@ export class PoolDialogComponent implements OnInit {
     }
 
     save() {
+
+        if (this.pool.customer === undefined) {
+            this.pool.customer = this.customerService.getCustomer();
+        }
+
         this.isSaving = true;
         if (this.pool.id !== undefined) {
             this.subscribeToSaveResponse(
@@ -79,6 +107,14 @@ export class PoolDialogComponent implements OnInit {
     }
 
     trackCustomerById(index: number, item: Customer) {
+        return item.id;
+    }
+
+    trackFilterById(index: number, item: Filter) {
+        return item.id;
+    }
+
+    trackMaterialById(index: number, item: Material) {
         return item.id;
     }
 

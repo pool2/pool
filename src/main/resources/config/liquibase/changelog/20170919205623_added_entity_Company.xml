@@ -32,7 +32,7 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
         <createTable tableName="company_inventory_item">
             <column name="inventory_items_id" type="bigint">
                 <constraints nullable="false"/>
@@ -43,7 +43,8 @@
         </createTable>
 
         <addPrimaryKey columnNames="companies_id, inventory_items_id" tableName="company_inventory_item"/>
-        
+        <loadData tableName="company" separator=";" file="config/liquibase/company.csv" encoding="UTF-8"/>
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

@@ -8,12 +8,6 @@
         <dd>
             <span>{{filterBrand.name}}</span>
         </dd>
-        <dt><span>Filter</span></dt>
-        <dd>
-            <div *ngIf="filterBrand.filter">
-                <a [routerLink]="['/filter', filterBrand.filter?.id]">{{filterBrand.filter?.id}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

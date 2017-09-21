@@ -33,6 +33,12 @@ public class Customer implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "alt_phone_number")
+    private String altPhoneNumber;
+
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "address_1")
     private String address1;
 
@@ -47,6 +53,9 @@ public class Customer implements Serializable {
 
     @Column(name = "state")
     private String state;
+
+    @Column(name = "zip")
+    private String zip;
 
     @ManyToOne
     private Company company;
@@ -101,6 +110,32 @@ public class Customer implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getAltPhoneNumber() {
+        return altPhoneNumber;
+    }
+
+    public Customer altPhoneNumber(String altPhoneNumber) {
+        this.altPhoneNumber = altPhoneNumber;
+        return this;
+    }
+
+    public void setAltPhoneNumber(String altPhoneNumber) {
+        this.altPhoneNumber = altPhoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Customer email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAddress1() {
@@ -166,6 +201,19 @@ public class Customer implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public Customer zip(String zip) {
+        this.zip = zip;
+        return this;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
     public Company getCompany() {
@@ -234,11 +282,14 @@ public class Customer implements Serializable {
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", altPhoneNumber='" + getAltPhoneNumber() + "'" +
+            ", email='" + getEmail() + "'" +
             ", address1='" + getAddress1() + "'" +
             ", address2='" + getAddress2() + "'" +
             ", address3='" + getAddress3() + "'" +
             ", city='" + getCity() + "'" +
             ", state='" + getState() + "'" +
+            ", zip='" + getZip() + "'" +
             "}";
     }
 }

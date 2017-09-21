@@ -1,0 +1,4 @@
+id;first_name;last_name;phone_number;alt_phone_number;address_1;address_2;city;state;zip;email;company_id
+1;John;Doe;832-884-3258;;111 Main St;;Houton;TX;77002;john@yahoo.com;1
+2;Mac;Porter;713-658-1245;;556 Oak St;;Houton;TX;77386;mporter@gmail.com;1
+3;Sally;Miller;832-584-3789;;2814 Shadowdale;;Houton;TX;77043;tripblet@gmail.com;1

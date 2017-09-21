@@ -16,6 +16,10 @@
         <dd>
             <span>{{filter.modelNumber}}</span>
         </dd>
+        <dt><span>Brand</span></dt>
+        <dd>
+            <span>{{filter.brand}}</span>
+        </dd>
         <dt><span>Replaced Date</span></dt>
         <dd>
             <span>{{filter.replacedDate | date:'mediumDate'}}</span>
@@ -24,6 +28,18 @@
         <dd>
             <div *ngIf="filter.note">
                 <a [routerLink]="['/note', filter.note?.id]">{{filter.note?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Filter Brand</span></dt>
+        <dd>
+            <div *ngIf="filter.filterBrand">
+                <a [routerLink]="['/filter-brand', filter.filterBrand?.id]">{{filter.filterBrand?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Filter Type</span></dt>
+        <dd>
+            <div *ngIf="filter.filterType">
+                <a [routerLink]="['/filter-type', filter.filterType?.id]">{{filter.filterType?.id}}</a>
             </div>
         </dd>
     </dl>

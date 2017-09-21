@@ -18,13 +18,6 @@
                 [(ngModel)]="filterBrand.name"  />
         </div>
 
-        <div class="form-group">
-            <label class="form-control-label" for="field_filter">Filter</label>
-            <select class="form-control" id="field_filter" name="filter" [(ngModel)]="filterBrand.filter" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="filterOption.id === filterBrand.filter?.id ? filterBrand.filter : filterOption" *ngFor="let filterOption of filters; trackBy: trackFilterById">{{filterOption.id}}</option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

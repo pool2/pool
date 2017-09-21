@@ -37,6 +37,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = PoolApp.class)
 public class PoolResourceIntTest {
 
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
+
     private static final Integer DEFAULT_SIZE = 1;
     private static final Integer UPDATED_SIZE = 2;
 
@@ -77,6 +80,7 @@ public class PoolResourceIntTest {
      */
     public static Pool createEntity(EntityManager em) {
         Pool pool = new Pool()
+            .name(DEFAULT_NAME)
             .size(DEFAULT_SIZE);
         return pool;
     }
@@ -101,6 +105,7 @@ public class PoolResourceIntTest {
         List<Pool> poolList = poolRepository.findAll();
         assertThat(poolList).hasSize(databaseSizeBeforeCreate + 1);
         Pool testPool = poolList.get(poolList.size() - 1);
+        assertThat(testPool.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testPool.getSize()).isEqualTo(DEFAULT_SIZE);
     }
 
@@ -134,6 +139,7 @@ public class PoolResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(pool.getId().intValue())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].size").value(hasItem(DEFAULT_SIZE)));
     }
 
@@ -148,6 +154,7 @@ public class PoolResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(pool.getId().intValue()))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.size").value(DEFAULT_SIZE));
     }
 
@@ -169,6 +176,7 @@ public class PoolResourceIntTest {
         // Update the pool
         Pool updatedPool = poolRepository.findOne(pool.getId());
         updatedPool
+            .name(UPDATED_NAME)
             .size(UPDATED_SIZE);
 
         restPoolMockMvc.perform(put("/api/pools")
@@ -180,6 +188,7 @@ public class PoolResourceIntTest {
         List<Pool> poolList = poolRepository.findAll();
         assertThat(poolList).hasSize(databaseSizeBeforeUpdate);
         Pool testPool = poolList.get(poolList.size() - 1);
+        assertThat(testPool.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testPool.getSize()).isEqualTo(UPDATED_SIZE);
     }
 

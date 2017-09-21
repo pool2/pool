@@ -9,8 +9,6 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { FilterType } from './filter-type.model';
 import { FilterTypePopupService } from './filter-type-popup.service';
 import { FilterTypeService } from './filter-type.service';
-import { Filter, FilterService } from '../filter';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-filter-type-dialog',
@@ -21,21 +19,16 @@ export class FilterTypeDialogComponent implements OnInit {
     filterType: FilterType;
     isSaving: boolean;
 
-    filters: Filter[];
-
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private filterTypeService: FilterTypeService,
-        private filterService: FilterService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.filterService.query()
-            .subscribe((res: ResponseWrapper) => { this.filters = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -70,10 +63,6 @@ export class FilterTypeDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.alertService.error(error.message, null, null);
-    }
-
-    trackFilterById(index: number, item: Filter) {
-        return item.id;
     }
 }
 
