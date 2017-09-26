@@ -60,8 +60,26 @@ export class AppointmentDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.waterTestService
+            .query({filter: 'appointment-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.appointment.waterTest || !this.appointment.waterTest.id) {
+                    this.watertests = res.json;
+                } else {
+                    this.waterTestService
+                        .find(this.appointment.waterTest.id)
+                        .subscribe((subRes: WaterTest) => {
+                            this.watertests = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
         this.employeeService.query()
             .subscribe((res: ResponseWrapper) => { this.employees = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.inventoryUsedService.query()
+            .subscribe((res: ResponseWrapper) => { this.inventoryuseds = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.taskService.query()
+            .subscribe((res: ResponseWrapper) => { this.tasks = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+
         this.principal.identity().then((account) => {
             this.employeeService.findByUserLogin(account.login).subscribe((employee) => {
                 this.employee = employee;
@@ -80,9 +98,6 @@ export class AppointmentDialogComponent implements OnInit {
     changePools() {
         this.poolService.findByCustomer(this.customer.id).subscribe((customersPools) => {
             this.customersPools = customersPools;
-            if (customersPools) {
-                this.appointment.pool  = customersPools[0];
-            }
 
         });
     }

@@ -13,16 +13,15 @@
                    [(ngModel)]="appointment.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_startTime">Date</label>
+            <label class="form-control-label" for="field_startTime">Start Time</label>
             <div class="input-group">
-                <input id="field_startTime" type="text" class="form-control" name="startTime" ngbDatepicker  #startTimeDp="ngbDatepicker"
-                       [(ngModel)]="appointment.startTime" required />
+                <input id="field_startTime" type="text" class="form-control" name="startTime" ngbDatepicker  #startTimeDp="ngbDatepicker" [(ngModel)]="appointment.startTime"
+                />
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-secondary" (click)="startTimeDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
         </div>
-        <!--
         <div class="form-group">
             <label class="form-control-label" for="field_endTime">End Time</label>
             <div class="input-group">
@@ -33,18 +32,17 @@
                 </span>
             </div>
         </div>
-        -->
 
         <div class="form-group">
             <label class="form-control-label" for="field_employee">Employee</label>
-            <select class="form-control" id="field_employee" name="employee" [(ngModel)]="appointment.employee" required>
+            <select class="form-control" id="field_employee" name="employee" [(ngModel)]="appointment.employee" >
                 <option [ngValue]="employeeOption.id === appointment.employee?.id ? appointment.employee : employeeOption"
                         *ngFor="let employeeOption of employees; trackBy: trackEmployeeById">{{employeeOption.user.firstName}} {{employeeOption.user.lastName}}</option>
             </select>
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_customer">Customer</label>
-            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="customer" (ngModelChange)="customerChanged($event)" required>
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="customer" (ngModelChange)="customerChanged($event)" >
                 <option [ngValue]="customerOption.id === customer?.id ? customer: customerOption" *ngFor="let customerOption of customers; trackBy: trackCustomerById">
                     {{customerOption.firstName}} {{customerOption.lastName}}
                 </option>
@@ -52,19 +50,33 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_pool">Pool</label>
-            <select class="form-control" id="field_pool" name="pool" [(ngModel)]="appointment.pool" required>
+            <select class="form-control" id="field_pool" name="pool" [(ngModel)]="appointment.pool" >
                 <option [ngValue]="poolOption.id === appointment.pool?.id ? appointment.pool : poolOption" *ngFor="let poolOption of customersPools; trackBy: trackPoolById">{{poolOption.name}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="field_task">Tasks</label>
+            <label for="field_inventoryUsed">Inventory Used</label>
+            <select class="form-control" id="field_inventoryUsed" multiple name="inventoryUsed" [(ngModel)]="appointment.inventoryUseds">
+                <option [ngValue]="getSelected(appointment.inventoryUseds, inventoryUsedOption)" *ngFor="let inventoryUsedOption of inventoryuseds; trackBy: trackInventoryUsedById">{{inventoryUsedOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_waterTest">Water Test</label>
+            <select class="form-control" id="field_waterTest" name="waterTest" [(ngModel)]="appointment.waterTest">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="waterTestOption.id === appointment.waterTest?.id ? appointment.waterTest : waterTestOption" *ngFor="let waterTestOption of watertests; trackBy: trackWaterTestById">{{waterTestOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_task">Task</label>
             <select class="form-control" id="field_task" multiple name="task" [(ngModel)]="appointment.tasks">
                 <option [ngValue]="getSelected(appointment.tasks, taskOption)" *ngFor="let taskOption of tasks; trackBy: trackTaskById">{{taskOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_note">Note</label>
-            <textarea type="text" class="form-control" name="note" id="field_note" [(ngModel)]="appointment.note"  ></textarea>
+            <input type="text" class="form-control" name="note" id="field_note"
+                   [(ngModel)]="appointment.note"  />
         </div>
     </div>
     <div class="modal-footer">

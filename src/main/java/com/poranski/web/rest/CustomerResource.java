@@ -77,6 +77,13 @@ public class CustomerResource {
             .body(result);
     }
 
+    @GetMapping("/customers/company/{id}")
+    @Timed
+    public List<Customer> getCustomersByCompanyId(@PathVariable Long id) {
+        log.debug("REST request to get customers for company: {}", id);
+            return customerRepository.findByCompanyId(id);
+    }
+
     /**
      * GET  /customers : get all the customers.
      *

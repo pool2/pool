@@ -1,0 +1,119 @@
+
+entity Company {
+  	name String required,
+	phoneNumber String
+}
+
+entity Customer {
+	firstName String required,
+	lastName String required,
+	phoneNumber String,
+	altPhoneNumber String,
+	email String,
+    	address1 String,
+    	address2 String,
+    	address3 String,
+    	city String,
+    	state String,
+    	zip String,
+    	note String
+}
+
+entity Task {
+	name String
+}
+
+entity Filter {
+	type String,
+	size Integer,
+	modelNumber String,
+	brand String,
+    	note  String,
+	replacedDate LocalDate
+}
+
+entity FilterType {
+	name String
+}
+
+entity FilterBrand{
+	name String
+}
+
+entity Pool {
+    name String,
+    	size Integer,
+    	note String
+}
+
+entity Material {
+	name String
+}
+
+entity Appointment {
+    	startTime LocalDate,
+    	endTime LocalDate,
+    	note String
+}
+
+
+entity Image {
+    	image ImageBlob,
+    	note String
+}
+
+entity InventoryItem {
+    	name String,
+    	quantity Integer
+}
+
+entity InventoryUsed {
+    	name String,
+    	quantity Integer,
+    	note String
+}
+
+entity Employee {
+	phoneNumber String
+}
+
+entity WaterTest {
+	ph Float,
+	chlorine Float,
+	totalAlkalinity Float,
+	calciumHardness Float,
+	cyanuricAcid Float,
+	totalDissolvedSolids Float,
+    	dateTime LocalDate,
+    	note String
+}
+
+
+relationship OneToMany {
+	Company{employee} to Employee,
+    	Company{customer} to Customer,
+    	Customer{pool} to Pool,
+    	Appointment{waterTest} to WaterTest,
+  	    Appointment{image} to Image
+}
+
+relationship ManyToOne {
+        Appointment{employee} to Employee,
+        Appointment{pool} to Pool,
+        InventoryUsed{inventoryItem} to InventoryItem,
+    	Pool{material} to Material,
+	    Filter{filterBrand} to FilterBrand,
+	    Filter{filterType} to FilterType
+}
+
+relationship ManyToMany {
+  	Company{inventoryItem} to InventoryItem,
+ 	Appointment{inventoryUsed} to InventoryUsed,
+	Appointment{task} to Task
+}
+
+relationship OneToOne {
+  	Appointment{waterTest} to WaterTest,
+	Employee{user} to User,
+	Pool{filter} to Filter
+}

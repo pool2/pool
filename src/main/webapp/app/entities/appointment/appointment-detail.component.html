@@ -1,20 +1,53 @@
 
 <div *ngIf="appointment">
-    <h2><span>Appointment</span> {{appointment.id}}</h2>
+    <h2><span>Appointment</span></h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span>Start Time</span></dt>
+        <dt><span>Date</span></dt>
         <dd>
             <span>{{appointment.startTime | date:'mediumDate'}}</span>
         </dd>
+        <!--
         <dt><span>End Time</span></dt>
         <dd>
             <span>{{appointment.endTime | date:'mediumDate'}}</span>
         </dd>
+        -->
+        <dt><span>Employee</span></dt>
+        <dd>
+            <div *ngIf="appointment.employee">
+                <a [routerLink]="['/employee', appointment.employee?.id]">
+                    {{appointment.employee?.user.firstName}}
+                    {{appointment.employee?.user.lastName}}
+                </a>
+            </div>
+        </dd>
+        <dt><span>Customer</span></dt>
+        <dd>
+            <div *ngIf="appointment.pool.customer">
+                <a [routerLink]="['/customer', appointment.pool.customer?.id]">
+                    {{appointment.pool.customer?.firstName}}
+                    {{appointment.pool.customer?.lastName}}
+                </a>
+            </div>
+        </dd>
+        <dt><span>Pool</span></dt>
+        <dd>
+            <div *ngIf="appointment.pool">
+                <a [routerLink]="['/pool', appointment.pool?.id]">{{appointment.pool?.name}}</a>
+            </div>
+        </dd>
         <dt><span>Note</span></dt>
         <dd>
             <span>{{appointment.note}}</span>
+        </dd>
+        <!--
+        <dt><span>Inventory Used</span></dt>
+        <dd>
+            <span *ngFor="let inventoryUsed of appointment.inventoryUseds; let last = last">
+                <a [routerLink]="['/inventory-used', inventoryUsed?.id ]">{{inventoryUsed.id}}</a>{{last ? '' : ', '}}
+            </span>
         </dd>
         <dt><span>Water Test</span></dt>
         <dd>
@@ -22,30 +55,13 @@
                 <a [routerLink]="['/water-test', appointment.waterTest?.id]">{{appointment.waterTest?.id}}</a>
             </div>
         </dd>
-        <dt><span>Employee</span></dt>
-        <dd>
-            <div *ngIf="appointment.employee">
-                <a [routerLink]="['/employee', appointment.employee?.id]">{{appointment.employee?.id}}</a>
-            </div>
-        </dd>
-        <dt><span>Pool</span></dt>
-        <dd>
-            <div *ngIf="appointment.pool">
-                <a [routerLink]="['/pool', appointment.pool?.id]">{{appointment.pool?.id}}</a>
-            </div>
-        </dd>
-        <dt><span>Inventory Used</span></dt>
-        <dd>
-            <span *ngFor="let inventoryUsed of appointment.inventoryUseds; let last = last">
-                <a [routerLink]="['/inventory-used', inventoryUsed?.id ]">{{inventoryUsed.id}}</a>{{last ? '' : ', '}}
-            </span>
-        </dd>
         <dt><span>Task</span></dt>
         <dd>
             <span *ngFor="let task of appointment.tasks; let last = last">
                 <a [routerLink]="['/task', task?.id ]">{{task.id}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
+        -->
     </dl>
 
     <button type="submit"

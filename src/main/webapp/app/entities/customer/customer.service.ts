@@ -61,4 +61,10 @@ export class CustomerService {
         const copy: Customer = Object.assign({}, customer);
         return copy;
     }
+
+    findByCompanyId(id: number): Observable<Customer[]> {
+        return this.http.get(`${this.resourceUrl}/company/${id}`).map((res: Response) => {
+            return res.json();
+            });
+    }
 }
