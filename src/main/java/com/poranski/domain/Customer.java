@@ -57,6 +57,9 @@ public class Customer implements Serializable {
     @Column(name = "zip")
     private String zip;
 
+    @Column(name = "note")
+    private String note;
+
     @ManyToOne
     private Company company;
 
@@ -216,6 +219,19 @@ public class Customer implements Serializable {
         this.zip = zip;
     }
 
+    public String getNote() {
+        return note;
+    }
+
+    public Customer note(String note) {
+        this.note = note;
+        return this;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     public Company getCompany() {
         return company;
     }
@@ -290,6 +306,7 @@ public class Customer implements Serializable {
             ", city='" + getCity() + "'" +
             ", state='" + getState() + "'" +
             ", zip='" + getZip() + "'" +
+            ", note='" + getNote() + "'" +
             "}";
     }
 }

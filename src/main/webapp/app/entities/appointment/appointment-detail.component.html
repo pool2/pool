@@ -12,6 +12,10 @@
         <dd>
             <span>{{appointment.endTime | date:'mediumDate'}}</span>
         </dd>
+        <dt><span>Note</span></dt>
+        <dd>
+            <span>{{appointment.note}}</span>
+        </dd>
         <dt><span>Water Test</span></dt>
         <dd>
             <div *ngIf="appointment.waterTest">
@@ -28,12 +32,6 @@
         <dd>
             <div *ngIf="appointment.pool">
                 <a [routerLink]="['/pool', appointment.pool?.id]">{{appointment.pool?.id}}</a>
-            </div>
-        </dd>
-        <dt><span>Note</span></dt>
-        <dd>
-            <div *ngIf="appointment.note">
-                <a [routerLink]="['/note', appointment.note?.id]">{{appointment.note?.id}}</a>
             </div>
         </dd>
         <dt><span>Inventory Used</span></dt>

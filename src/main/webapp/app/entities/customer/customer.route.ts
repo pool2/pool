@@ -8,6 +8,7 @@ import { CustomerComponent } from './customer.component';
 import { CustomerDetailComponent } from './customer-detail.component';
 import { CustomerPopupComponent } from './customer-dialog.component';
 import { CustomerDeletePopupComponent } from './customer-delete-dialog.component';
+import { PoolDetailComponent } from '../pool/pool-detail.component';
 
 export const customerRoute: Routes = [
     {
@@ -24,6 +25,15 @@ export const customerRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'Customers'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'customer/pool/:id',
+        component: PoolDetailComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Pools'
         },
         canActivate: [UserRouteAccessService]
     }

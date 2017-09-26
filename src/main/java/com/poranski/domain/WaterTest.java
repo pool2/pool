@@ -40,6 +40,9 @@ public class WaterTest implements Serializable {
     @Column(name = "date_time")
     private LocalDate dateTime;
 
+    @Column(name = "note")
+    private String note;
+
     @ManyToOne
     private Appointment appointment;
 
@@ -143,6 +146,19 @@ public class WaterTest implements Serializable {
         this.dateTime = dateTime;
     }
 
+    public String getNote() {
+        return note;
+    }
+
+    public WaterTest note(String note) {
+        this.note = note;
+        return this;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     public Appointment getAppointment() {
         return appointment;
     }
@@ -188,6 +204,7 @@ public class WaterTest implements Serializable {
             ", cyanuricAcid='" + getCyanuricAcid() + "'" +
             ", totalDissolvedSolids='" + getTotalDissolvedSolids() + "'" +
             ", dateTime='" + getDateTime() + "'" +
+            ", note='" + getNote() + "'" +
             "}";
     }
 }

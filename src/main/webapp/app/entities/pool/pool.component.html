@@ -1,6 +1,5 @@
 <div>
     <h2>
-        <span>Pools</span>
         <button class="btn btn-primary float-right jh-create-entity create-pool" [routerLink]="['/', { outlets: { popup: ['pool-new'] } }]">
             <span class="fa fa-plus"></span>
             <span >
@@ -14,43 +13,9 @@
     <br/>
     <div class="table-responsive" *ngIf="pools">
         <table class="table table-striped">
-            <thead>
-            <tr>
-            <th><span>ID</span></th>
-            <th><span>Name</span></th>
-            <th><span>Size</span></th>
-            <th><span>Customer</span></th>
-            <th><span>Filter</span></th>
-            <th><span>Material</span></th>
-            <th><span>Note</span></th>
-            <th></th>
-            </tr>
-            </thead>
             <tbody>
             <tr *ngFor="let pool of pools ;trackBy: trackId">
-                <td><a [routerLink]="['../pool', pool.id ]">{{pool.id}}</a></td>
-                <td>{{pool.name}}</td>
-                <td>{{pool.size}}</td>
-                <td>
-                    <div *ngIf="pool.customer">
-                        <a [routerLink]="['../customer', pool.customer?.id ]" >{{pool.customer?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="pool.filter">
-                        <a [routerLink]="['../filter', pool.filter?.id ]" >{{pool.filter?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="pool.material">
-                        <a [routerLink]="['../material', pool.material?.id ]" >{{pool.material?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="pool.note">
-                        <a [routerLink]="['../note', pool.note?.id ]" >{{pool.note?.id}}</a>
-                    </div>
-                </td>
+                <td><a [routerLink]="['../pool', pool.id]">{{pool.name}}</a></td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

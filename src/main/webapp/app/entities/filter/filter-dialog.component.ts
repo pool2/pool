@@ -9,7 +9,6 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Filter } from './filter.model';
 import { FilterPopupService } from './filter-popup.service';
 import { FilterService } from './filter.service';
-import { Note, NoteService } from '../note';
 import { FilterBrand, FilterBrandService } from '../filter-brand';
 import { FilterType, FilterTypeService } from '../filter-type';
 import { ResponseWrapper } from '../../shared';
@@ -23,8 +22,6 @@ export class FilterDialogComponent implements OnInit {
     filter: Filter;
     isSaving: boolean;
 
-    notes: Note[];
-
     filterbrands: FilterBrand[];
 
     filtertypes: FilterType[];
@@ -34,7 +31,6 @@ export class FilterDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private filterService: FilterService,
-        private noteService: NoteService,
         private filterBrandService: FilterBrandService,
         private filterTypeService: FilterTypeService,
         private eventManager: JhiEventManager
@@ -43,8 +39,6 @@ export class FilterDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.noteService.query()
-            .subscribe((res: ResponseWrapper) => { this.notes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.filterBrandService.query()
             .subscribe((res: ResponseWrapper) => { this.filterbrands = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.filterTypeService.query()
@@ -83,10 +77,6 @@ export class FilterDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.alertService.error(error.message, null, null);
-    }
-
-    trackNoteById(index: number, item: Note) {
-        return item.id;
     }
 
     trackFilterBrandById(index: number, item: FilterBrand) {

@@ -43,6 +43,9 @@ public class PoolResourceIntTest {
     private static final Integer DEFAULT_SIZE = 1;
     private static final Integer UPDATED_SIZE = 2;
 
+    private static final String DEFAULT_NOTE = "AAAAAAAAAA";
+    private static final String UPDATED_NOTE = "BBBBBBBBBB";
+
     @Autowired
     private PoolRepository poolRepository;
 
@@ -81,7 +84,8 @@ public class PoolResourceIntTest {
     public static Pool createEntity(EntityManager em) {
         Pool pool = new Pool()
             .name(DEFAULT_NAME)
-            .size(DEFAULT_SIZE);
+            .size(DEFAULT_SIZE)
+            .note(DEFAULT_NOTE);
         return pool;
     }
 
@@ -107,6 +111,7 @@ public class PoolResourceIntTest {
         Pool testPool = poolList.get(poolList.size() - 1);
         assertThat(testPool.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testPool.getSize()).isEqualTo(DEFAULT_SIZE);
+        assertThat(testPool.getNote()).isEqualTo(DEFAULT_NOTE);
     }
 
     @Test
@@ -140,7 +145,8 @@ public class PoolResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(pool.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].size").value(hasItem(DEFAULT_SIZE)));
+            .andExpect(jsonPath("$.[*].size").value(hasItem(DEFAULT_SIZE)))
+            .andExpect(jsonPath("$.[*].note").value(hasItem(DEFAULT_NOTE.toString())));
     }
 
     @Test
@@ -155,7 +161,8 @@ public class PoolResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(pool.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.size").value(DEFAULT_SIZE));
+            .andExpect(jsonPath("$.size").value(DEFAULT_SIZE))
+            .andExpect(jsonPath("$.note").value(DEFAULT_NOTE.toString()));
     }
 
     @Test
@@ -177,7 +184,8 @@ public class PoolResourceIntTest {
         Pool updatedPool = poolRepository.findOne(pool.getId());
         updatedPool
             .name(UPDATED_NAME)
-            .size(UPDATED_SIZE);
+            .size(UPDATED_SIZE)
+            .note(UPDATED_NOTE);
 
         restPoolMockMvc.perform(put("/api/pools")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -190,6 +198,7 @@ public class PoolResourceIntTest {
         Pool testPool = poolList.get(poolList.size() - 1);
         assertThat(testPool.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testPool.getSize()).isEqualTo(UPDATED_SIZE);
+        assertThat(testPool.getNote()).isEqualTo(UPDATED_NOTE);
     }
 
     @Test

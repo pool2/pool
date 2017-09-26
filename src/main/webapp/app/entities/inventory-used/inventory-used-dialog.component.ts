@@ -10,7 +10,6 @@ import { InventoryUsed } from './inventory-used.model';
 import { InventoryUsedPopupService } from './inventory-used-popup.service';
 import { InventoryUsedService } from './inventory-used.service';
 import { InventoryItem, InventoryItemService } from '../inventory-item';
-import { Note, NoteService } from '../note';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -24,14 +23,11 @@ export class InventoryUsedDialogComponent implements OnInit {
 
     inventoryitems: InventoryItem[];
 
-    notes: Note[];
-
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private inventoryUsedService: InventoryUsedService,
         private inventoryItemService: InventoryItemService,
-        private noteService: NoteService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -40,8 +36,6 @@ export class InventoryUsedDialogComponent implements OnInit {
         this.isSaving = false;
         this.inventoryItemService.query()
             .subscribe((res: ResponseWrapper) => { this.inventoryitems = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.noteService.query()
-            .subscribe((res: ResponseWrapper) => { this.notes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -79,10 +73,6 @@ export class InventoryUsedDialogComponent implements OnInit {
     }
 
     trackInventoryItemById(index: number, item: InventoryItem) {
-        return item.id;
-    }
-
-    trackNoteById(index: number, item: Note) {
         return item.id;
     }
 }

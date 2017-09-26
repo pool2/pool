@@ -7,8 +7,8 @@ export class Filter implements BaseEntity {
         public size?: number,
         public modelNumber?: string,
         public brand?: string,
+        public note?: string,
         public replacedDate?: any,
-        public note?: BaseEntity,
         public filterBrand?: BaseEntity,
         public filterType?: BaseEntity,
     ) {

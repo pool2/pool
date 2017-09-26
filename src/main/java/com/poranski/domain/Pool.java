@@ -24,6 +24,9 @@ public class Pool implements Serializable {
     @Column(name = "jhi_size")
     private Integer size;
 
+    @Column(name = "note")
+    private String note;
+
     @ManyToOne
     private Customer customer;
 
@@ -33,9 +36,6 @@ public class Pool implements Serializable {
 
     @ManyToOne
     private Material material;
-
-    @ManyToOne
-    private Note note;
 
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
@@ -70,6 +70,19 @@ public class Pool implements Serializable {
 
     public void setSize(Integer size) {
         this.size = size;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public Pool note(String note) {
+        this.note = note;
+        return this;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public Customer getCustomer() {
@@ -110,19 +123,6 @@ public class Pool implements Serializable {
     public void setMaterial(Material material) {
         this.material = material;
     }
-
-    public Note getNote() {
-        return note;
-    }
-
-    public Pool note(Note note) {
-        this.note = note;
-        return this;
-    }
-
-    public void setNote(Note note) {
-        this.note = note;
-    }
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 
     @Override
@@ -151,6 +151,7 @@ public class Pool implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", size='" + getSize() + "'" +
+            ", note='" + getNote() + "'" +
             "}";
     }
 }

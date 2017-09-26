@@ -5,6 +5,7 @@ export class Image implements BaseEntity {
         public id?: number,
         public imageContentType?: string,
         public image?: any,
+        public note?: string,
         public appointment?: BaseEntity,
     ) {
     }

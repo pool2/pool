@@ -24,11 +24,11 @@ public class InventoryUsed implements Serializable {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @ManyToOne
-    private InventoryItem inventoryItem;
+    @Column(name = "note")
+    private String note;
 
     @ManyToOne
-    private Note note;
+    private InventoryItem inventoryItem;
 
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
@@ -65,6 +65,19 @@ public class InventoryUsed implements Serializable {
         this.quantity = quantity;
     }
 
+    public String getNote() {
+        return note;
+    }
+
+    public InventoryUsed note(String note) {
+        this.note = note;
+        return this;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     public InventoryItem getInventoryItem() {
         return inventoryItem;
     }
@@ -76,19 +89,6 @@ public class InventoryUsed implements Serializable {
 
     public void setInventoryItem(InventoryItem inventoryItem) {
         this.inventoryItem = inventoryItem;
-    }
-
-    public Note getNote() {
-        return note;
-    }
-
-    public InventoryUsed note(Note note) {
-        this.note = note;
-        return this;
-    }
-
-    public void setNote(Note note) {
-        this.note = note;
     }
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 
@@ -118,6 +118,7 @@ public class InventoryUsed implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", quantity='" + getQuantity() + "'" +
+            ", note='" + getNote() + "'" +
             "}";
     }
 }

@@ -34,12 +34,6 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "many-to-one",
-            "relationshipName": "note",
-            "otherEntityName": "note",
-            "otherEntityField": "id"
-        },
-        {
             "relationshipType": "many-to-many",
             "otherEntityRelationshipName": "",
             "relationshipName": "inventoryUsed",
@@ -64,6 +58,10 @@
         {
             "fieldName": "endTime",
             "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "note",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20170919205626",

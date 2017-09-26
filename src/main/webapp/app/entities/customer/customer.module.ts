@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 import { PoolSharedModule } from '../../shared';
+
 import {
     CustomerService,
     CustomerPopupService,
@@ -14,6 +14,8 @@ import {
     customerRoute,
     customerPopupRoute,
 } from './';
+import { PoolPoolModule } from '../pool/pool.module';
+import { PoolComponent } from '../pool/pool.component';
 
 const ENTITY_STATES = [
     ...customerRoute,
@@ -23,6 +25,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         PoolSharedModule,
+        PoolPoolModule,
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
     declarations: [
@@ -35,6 +38,7 @@ const ENTITY_STATES = [
     ],
     entryComponents: [
         CustomerComponent,
+        PoolComponent,
         CustomerDialogComponent,
         CustomerPopupComponent,
         CustomerDeleteDialogComponent,

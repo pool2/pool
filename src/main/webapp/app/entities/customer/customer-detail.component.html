@@ -3,20 +3,13 @@
     <h2>{{customer.firstName}} {{customer.lastName}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <jhi-pool></jhi-pool>
     <table>
         <tr><td>{{customer.address1}} {{customer.address2}} {{customer.address3}}</td></tr>
         <tr><td>{{customer.city}}, {{customer.state}} {{customer.zip}}</td></tr>
         <tr><td><a href="mailto:{{customer.email}}">{{customer.email}}</a></td></tr>
         <tr><td>{{customer.phoneNumber}} {{customer.altPhoneNumber}}</td></tr>
         <tr><td>&nbsp;</td></tr>
-        <tr><td>
-
-        <button class="btn btn-primary float-right jh-create-entity create-pool" [routerLink]="['/', { outlets: { popup: ['pool-new'] } }]">
-            <span class="fa fa-plus"></span>
-            <span > Add Pool </span>
-        </button>
-        </td></tr>
+        <tr><td><jhi-pool></jhi-pool></td></tr>
         <tr><td>&nbsp;</td></tr>
         <tr><td>
 

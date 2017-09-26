@@ -32,6 +32,11 @@
                 </span>
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_note">Note</label>
+            <input type="text" class="form-control" name="note" id="field_note"
+                [(ngModel)]="appointment.note"  />
+        </div>
 
         <div class="form-group">
             <label class="form-control-label" for="field_waterTest">Water Test</label>
@@ -52,13 +57,6 @@
             <select class="form-control" id="field_pool" name="pool" [(ngModel)]="appointment.pool" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="poolOption.id === appointment.pool?.id ? appointment.pool : poolOption" *ngFor="let poolOption of pools; trackBy: trackPoolById">{{poolOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_note">Note</label>
-            <select class="form-control" id="field_note" name="note" [(ngModel)]="appointment.note" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="noteOption.id === appointment.note?.id ? appointment.note : noteOption" *ngFor="let noteOption of notes; trackBy: trackNoteById">{{noteOption.id}}</option>
             </select>
         </div>
         <div class="form-group">

@@ -24,6 +24,7 @@
             <th><span>Cyanuric Acid</span></th>
             <th><span>Total Dissolved Solids</span></th>
             <th><span>Date Time</span></th>
+            <th><span>Note</span></th>
             <th><span>Appointment</span></th>
             <th></th>
             </tr>
@@ -38,6 +39,7 @@
                 <td>{{waterTest.cyanuricAcid}}</td>
                 <td>{{waterTest.totalDissolvedSolids}}</td>
                 <td>{{waterTest.dateTime | date:'mediumDate'}}</td>
+                <td>{{waterTest.note}}</td>
                 <td>
                     <div *ngIf="waterTest.appointment">
                         <a [routerLink]="['../appointment', waterTest.appointment?.id ]" >{{waterTest.appointment?.id}}</a>

@@ -36,6 +36,9 @@ import { PoolWaterTestModule } from './water-test/water-test.module';
         PoolWaterTestModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
+    exports: [
+        PoolPoolModule
+    ],
     declarations: [],
     entryComponents: [],
     providers: [],

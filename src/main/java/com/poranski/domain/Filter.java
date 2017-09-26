@@ -31,11 +31,11 @@ public class Filter implements Serializable {
     @Column(name = "brand")
     private String brand;
 
+    @Column(name = "note")
+    private String note;
+
     @Column(name = "replaced_date")
     private LocalDate replacedDate;
-
-    @ManyToOne
-    private Note note;
 
     @ManyToOne
     private FilterBrand filterBrand;
@@ -104,6 +104,19 @@ public class Filter implements Serializable {
         this.brand = brand;
     }
 
+    public String getNote() {
+        return note;
+    }
+
+    public Filter note(String note) {
+        this.note = note;
+        return this;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     public LocalDate getReplacedDate() {
         return replacedDate;
     }
@@ -115,19 +128,6 @@ public class Filter implements Serializable {
 
     public void setReplacedDate(LocalDate replacedDate) {
         this.replacedDate = replacedDate;
-    }
-
-    public Note getNote() {
-        return note;
-    }
-
-    public Filter note(Note note) {
-        this.note = note;
-        return this;
-    }
-
-    public void setNote(Note note) {
-        this.note = note;
     }
 
     public FilterBrand getFilterBrand() {
@@ -185,6 +185,7 @@ public class Filter implements Serializable {
             ", size='" + getSize() + "'" +
             ", modelNumber='" + getModelNumber() + "'" +
             ", brand='" + getBrand() + "'" +
+            ", note='" + getNote() + "'" +
             ", replacedDate='" + getReplacedDate() + "'" +
             "}";
     }

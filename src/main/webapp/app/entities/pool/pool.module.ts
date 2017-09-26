@@ -25,6 +25,9 @@ const ENTITY_STATES = [
         PoolSharedModule,
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
+    exports: [
+        PoolComponent
+    ],
     declarations: [
         PoolComponent,
         PoolDetailComponent,

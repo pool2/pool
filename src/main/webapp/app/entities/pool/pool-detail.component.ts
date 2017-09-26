@@ -5,6 +5,7 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { Pool } from './pool.model';
 import { PoolService } from './pool.service';
+import { Customer } from '../customer/customer.model';
 
 @Component({
     selector: 'jhi-pool-detail',
@@ -15,6 +16,7 @@ export class PoolDetailComponent implements OnInit, OnDestroy {
     pool: Pool;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
+    private customer: Customer;
 
     constructor(
         private eventManager: JhiEventManager,
@@ -28,12 +30,14 @@ export class PoolDetailComponent implements OnInit, OnDestroy {
             this.load(params['id']);
         });
         this.registerChangeInPools();
+
     }
 
     load(id) {
         this.poolService.find(id).subscribe((pool) => {
             this.pool = pool;
         });
+
     }
     previousState() {
         window.history.back();

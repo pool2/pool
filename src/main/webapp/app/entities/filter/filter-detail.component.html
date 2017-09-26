@@ -20,15 +20,13 @@
         <dd>
             <span>{{filter.brand}}</span>
         </dd>
+        <dt><span>Note</span></dt>
+        <dd>
+            <span>{{filter.note}}</span>
+        </dd>
         <dt><span>Replaced Date</span></dt>
         <dd>
             <span>{{filter.replacedDate | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span>Note</span></dt>
-        <dd>
-            <div *ngIf="filter.note">
-                <a [routerLink]="['/note', filter.note?.id]">{{filter.note?.id}}</a>
-            </div>
         </dd>
         <dt><span>Filter Brand</span></dt>
         <dd>

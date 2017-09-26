@@ -64,6 +64,10 @@
         {
             "fieldName": "zip",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "note",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20170919205624",

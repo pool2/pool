@@ -12,7 +12,6 @@ import { AppointmentService } from './appointment.service';
 import { WaterTest, WaterTestService } from '../water-test';
 import { Employee, EmployeeService } from '../employee';
 import { Pool, PoolService } from '../pool';
-import { Note, NoteService } from '../note';
 import { InventoryUsed, InventoryUsedService } from '../inventory-used';
 import { Task, TaskService } from '../task';
 import { ResponseWrapper } from '../../shared';
@@ -32,8 +31,6 @@ export class AppointmentDialogComponent implements OnInit {
 
     pools: Pool[];
 
-    notes: Note[];
-
     inventoryuseds: InventoryUsed[];
 
     tasks: Task[];
@@ -47,7 +44,6 @@ export class AppointmentDialogComponent implements OnInit {
         private waterTestService: WaterTestService,
         private employeeService: EmployeeService,
         private poolService: PoolService,
-        private noteService: NoteService,
         private inventoryUsedService: InventoryUsedService,
         private taskService: TaskService,
         private eventManager: JhiEventManager
@@ -73,8 +69,6 @@ export class AppointmentDialogComponent implements OnInit {
             .subscribe((res: ResponseWrapper) => { this.employees = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.poolService.query()
             .subscribe((res: ResponseWrapper) => { this.pools = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.noteService.query()
-            .subscribe((res: ResponseWrapper) => { this.notes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.inventoryUsedService.query()
             .subscribe((res: ResponseWrapper) => { this.inventoryuseds = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.taskService.query()
@@ -124,10 +118,6 @@ export class AppointmentDialogComponent implements OnInit {
     }
 
     trackPoolById(index: number, item: Pool) {
-        return item.id;
-    }
-
-    trackNoteById(index: number, item: Note) {
         return item.id;
     }
 

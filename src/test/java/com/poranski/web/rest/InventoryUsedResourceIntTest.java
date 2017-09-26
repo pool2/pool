@@ -43,6 +43,9 @@ public class InventoryUsedResourceIntTest {
     private static final Integer DEFAULT_QUANTITY = 1;
     private static final Integer UPDATED_QUANTITY = 2;
 
+    private static final String DEFAULT_NOTE = "AAAAAAAAAA";
+    private static final String UPDATED_NOTE = "BBBBBBBBBB";
+
     @Autowired
     private InventoryUsedRepository inventoryUsedRepository;
 
@@ -81,7 +84,8 @@ public class InventoryUsedResourceIntTest {
     public static InventoryUsed createEntity(EntityManager em) {
         InventoryUsed inventoryUsed = new InventoryUsed()
             .name(DEFAULT_NAME)
-            .quantity(DEFAULT_QUANTITY);
+            .quantity(DEFAULT_QUANTITY)
+            .note(DEFAULT_NOTE);
         return inventoryUsed;
     }
 
@@ -107,6 +111,7 @@ public class InventoryUsedResourceIntTest {
         InventoryUsed testInventoryUsed = inventoryUsedList.get(inventoryUsedList.size() - 1);
         assertThat(testInventoryUsed.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testInventoryUsed.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
+        assertThat(testInventoryUsed.getNote()).isEqualTo(DEFAULT_NOTE);
     }
 
     @Test
@@ -140,7 +145,8 @@ public class InventoryUsedResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(inventoryUsed.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)));
+            .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
+            .andExpect(jsonPath("$.[*].note").value(hasItem(DEFAULT_NOTE.toString())));
     }
 
     @Test
@@ -155,7 +161,8 @@ public class InventoryUsedResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(inventoryUsed.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY));
+            .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY))
+            .andExpect(jsonPath("$.note").value(DEFAULT_NOTE.toString()));
     }
 
     @Test
@@ -177,7 +184,8 @@ public class InventoryUsedResourceIntTest {
         InventoryUsed updatedInventoryUsed = inventoryUsedRepository.findOne(inventoryUsed.getId());
         updatedInventoryUsed
             .name(UPDATED_NAME)
-            .quantity(UPDATED_QUANTITY);
+            .quantity(UPDATED_QUANTITY)
+            .note(UPDATED_NOTE);
 
         restInventoryUsedMockMvc.perform(put("/api/inventory-useds")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -190,6 +198,7 @@ public class InventoryUsedResourceIntTest {
         InventoryUsed testInventoryUsed = inventoryUsedList.get(inventoryUsedList.size() - 1);
         assertThat(testInventoryUsed.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testInventoryUsed.getQuantity()).isEqualTo(UPDATED_QUANTITY);
+        assertThat(testInventoryUsed.getNote()).isEqualTo(UPDATED_NOTE);
     }
 
     @Test

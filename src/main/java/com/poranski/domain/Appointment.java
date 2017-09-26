@@ -28,6 +28,9 @@ public class Appointment implements Serializable {
     @Column(name = "end_time")
     private LocalDate endTime;
 
+    @Column(name = "note")
+    private String note;
+
     @OneToOne
     @JoinColumn(unique = true)
     private WaterTest waterTest;
@@ -45,9 +48,6 @@ public class Appointment implements Serializable {
 
     @ManyToOne
     private Pool pool;
-
-    @ManyToOne
-    private Note note;
 
     @ManyToMany
     @JoinTable(name = "appointment_inventory_used",
@@ -94,6 +94,19 @@ public class Appointment implements Serializable {
 
     public void setEndTime(LocalDate endTime) {
         this.endTime = endTime;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public Appointment note(String note) {
+        this.note = note;
+        return this;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public WaterTest getWaterTest() {
@@ -185,19 +198,6 @@ public class Appointment implements Serializable {
         this.pool = pool;
     }
 
-    public Note getNote() {
-        return note;
-    }
-
-    public Appointment note(Note note) {
-        this.note = note;
-        return this;
-    }
-
-    public void setNote(Note note) {
-        this.note = note;
-    }
-
     public Set<InventoryUsed> getInventoryUseds() {
         return inventoryUseds;
     }
@@ -271,6 +271,7 @@ public class Appointment implements Serializable {
             "id=" + getId() +
             ", startTime='" + getStartTime() + "'" +
             ", endTime='" + getEndTime() + "'" +
+            ", note='" + getNote() + "'" +
             "}";
     }
 }

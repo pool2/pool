@@ -36,6 +36,10 @@
         {
             "fieldName": "dateTime",
             "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "note",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20170920174907",

@@ -5,6 +5,7 @@ import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService } fr
 
 import { Pool } from './pool.model';
 import { PoolService } from './pool.service';
+import { CustomerService } from '../customer/customer.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
@@ -19,6 +20,7 @@ pools: Pool[];
 
     constructor(
         private poolService: PoolService,
+        private customerService: CustomerService,
         private alertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private principal: Principal
@@ -27,14 +29,18 @@ pools: Pool[];
 
     loadAll() {
 
-        this.poolService.logThis('I am here');
-
-        this.poolService.query().subscribe(
-            (res: ResponseWrapper) => {
-                this.pools = res.json;
-            },
-            (res: ResponseWrapper) => this.onError(res.json)
-        );
+        if (this.customerService.getCustomer()) {
+            this.poolService.findByCustomer(this.customerService.getCustomer().id).subscribe((pools) => {
+                this.pools = pools;
+            });
+        } else {
+            this.poolService.query().subscribe(
+                (res: ResponseWrapper) => {
+                    this.pools = res.json;
+                 },
+                (res: ResponseWrapper) => this.onError(res.json)
+            );
+        }
     }
     ngOnInit() {
         this.loadAll();

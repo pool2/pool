@@ -43,6 +43,9 @@ public class ImageResourceIntTest {
     private static final String DEFAULT_IMAGE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_IMAGE_CONTENT_TYPE = "image/png";
 
+    private static final String DEFAULT_NOTE = "AAAAAAAAAA";
+    private static final String UPDATED_NOTE = "BBBBBBBBBB";
+
     @Autowired
     private ImageRepository imageRepository;
 
@@ -81,7 +84,8 @@ public class ImageResourceIntTest {
     public static Image createEntity(EntityManager em) {
         Image image = new Image()
             .image(DEFAULT_IMAGE)
-            .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE);
+            .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE)
+            .note(DEFAULT_NOTE);
         return image;
     }
 
@@ -107,6 +111,7 @@ public class ImageResourceIntTest {
         Image testImage = imageList.get(imageList.size() - 1);
         assertThat(testImage.getImage()).isEqualTo(DEFAULT_IMAGE);
         assertThat(testImage.getImageContentType()).isEqualTo(DEFAULT_IMAGE_CONTENT_TYPE);
+        assertThat(testImage.getNote()).isEqualTo(DEFAULT_NOTE);
     }
 
     @Test
@@ -140,7 +145,8 @@ public class ImageResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(image.getId().intValue())))
             .andExpect(jsonPath("$.[*].imageContentType").value(hasItem(DEFAULT_IMAGE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))));
+            .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))))
+            .andExpect(jsonPath("$.[*].note").value(hasItem(DEFAULT_NOTE.toString())));
     }
 
     @Test
@@ -155,7 +161,8 @@ public class ImageResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(image.getId().intValue()))
             .andExpect(jsonPath("$.imageContentType").value(DEFAULT_IMAGE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)));
+            .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)))
+            .andExpect(jsonPath("$.note").value(DEFAULT_NOTE.toString()));
     }
 
     @Test
@@ -177,7 +184,8 @@ public class ImageResourceIntTest {
         Image updatedImage = imageRepository.findOne(image.getId());
         updatedImage
             .image(UPDATED_IMAGE)
-            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE);
+            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
+            .note(UPDATED_NOTE);
 
         restImageMockMvc.perform(put("/api/images")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -190,6 +198,7 @@ public class ImageResourceIntTest {
         Image testImage = imageList.get(imageList.size() - 1);
         assertThat(testImage.getImage()).isEqualTo(UPDATED_IMAGE);
         assertThat(testImage.getImageContentType()).isEqualTo(UPDATED_IMAGE_CONTENT_TYPE);
+        assertThat(testImage.getNote()).isEqualTo(UPDATED_NOTE);
     }
 
     @Test

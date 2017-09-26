@@ -33,6 +33,12 @@ export class PoolService {
         });
     }
 
+    findByCustomer(id: number): Observable<Pool[]> {
+        return this.http.get(`${this.resourceUrl}/customer/${id}`).map((res: Response) => {
+            return res.json();
+        });
+    }
+
     query(req?: any): Observable<ResponseWrapper> {
         const options = createRequestOption(req);
         return this.http.get(this.resourceUrl, options)

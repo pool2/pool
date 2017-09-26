@@ -14,6 +14,7 @@ export class Customer implements BaseEntity {
         public city?: string,
         public state?: string,
         public zip?: string,
+        public note?: string,
         public company?: BaseEntity,
         public pools?: BaseEntity[],
     ) {

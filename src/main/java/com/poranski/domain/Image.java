@@ -25,6 +25,9 @@ public class Image implements Serializable {
     @Column(name = "image_content_type")
     private String imageContentType;
 
+    @Column(name = "note")
+    private String note;
+
     @ManyToOne
     private Appointment appointment;
 
@@ -61,6 +64,19 @@ public class Image implements Serializable {
 
     public void setImageContentType(String imageContentType) {
         this.imageContentType = imageContentType;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public Image note(String note) {
+        this.note = note;
+        return this;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public Appointment getAppointment() {
@@ -103,6 +119,7 @@ public class Image implements Serializable {
             "id=" + getId() +
             ", image='" + getImage() + "'" +
             ", imageContentType='" + imageContentType + "'" +
+            ", note='" + getNote() + "'" +
             "}";
     }
 }

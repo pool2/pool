@@ -108,6 +108,13 @@ public class PoolResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(pool));
     }
 
+    @GetMapping("/pools/customer/{id}")
+    @Timed
+    public List<Pool> getPoolByCustomerId(@PathVariable Long id) {
+        log.debug("REST request to get Pool by CustomerId : {}", id);
+        return poolRepository.findByCustomerId(id);
+    }
+
     /**
      * DELETE  /pools/:id : delete the "id" pool.
      *

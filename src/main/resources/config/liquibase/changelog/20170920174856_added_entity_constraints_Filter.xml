@@ -8,12 +8,6 @@
     -->
     <changeSet id="20170920174856-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="note_id"
-                                 baseTableName="filter"
-                                 constraintName="fk_filter_note_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="note"/>
-
         <addForeignKeyConstraint baseColumnNames="filter_brand_id"
                                  baseTableName="filter"
                                  constraintName="fk_filter_filter_brand_id"

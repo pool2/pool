@@ -10,6 +10,7 @@ export class WaterTest implements BaseEntity {
         public cyanuricAcid?: number,
         public totalDissolvedSolids?: number,
         public dateTime?: any,
+        public note?: string,
         public appointment?: BaseEntity,
     ) {
     }

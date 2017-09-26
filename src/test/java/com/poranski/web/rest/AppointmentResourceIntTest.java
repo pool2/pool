@@ -45,6 +45,9 @@ public class AppointmentResourceIntTest {
     private static final LocalDate DEFAULT_END_TIME = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_END_TIME = LocalDate.now(ZoneId.systemDefault());
 
+    private static final String DEFAULT_NOTE = "AAAAAAAAAA";
+    private static final String UPDATED_NOTE = "BBBBBBBBBB";
+
     @Autowired
     private AppointmentRepository appointmentRepository;
 
@@ -83,7 +86,8 @@ public class AppointmentResourceIntTest {
     public static Appointment createEntity(EntityManager em) {
         Appointment appointment = new Appointment()
             .startTime(DEFAULT_START_TIME)
-            .endTime(DEFAULT_END_TIME);
+            .endTime(DEFAULT_END_TIME)
+            .note(DEFAULT_NOTE);
         return appointment;
     }
 
@@ -109,6 +113,7 @@ public class AppointmentResourceIntTest {
         Appointment testAppointment = appointmentList.get(appointmentList.size() - 1);
         assertThat(testAppointment.getStartTime()).isEqualTo(DEFAULT_START_TIME);
         assertThat(testAppointment.getEndTime()).isEqualTo(DEFAULT_END_TIME);
+        assertThat(testAppointment.getNote()).isEqualTo(DEFAULT_NOTE);
     }
 
     @Test
@@ -142,7 +147,8 @@ public class AppointmentResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(appointment.getId().intValue())))
             .andExpect(jsonPath("$.[*].startTime").value(hasItem(DEFAULT_START_TIME.toString())))
-            .andExpect(jsonPath("$.[*].endTime").value(hasItem(DEFAULT_END_TIME.toString())));
+            .andExpect(jsonPath("$.[*].endTime").value(hasItem(DEFAULT_END_TIME.toString())))
+            .andExpect(jsonPath("$.[*].note").value(hasItem(DEFAULT_NOTE.toString())));
     }
 
     @Test
@@ -157,7 +163,8 @@ public class AppointmentResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(appointment.getId().intValue()))
             .andExpect(jsonPath("$.startTime").value(DEFAULT_START_TIME.toString()))
-            .andExpect(jsonPath("$.endTime").value(DEFAULT_END_TIME.toString()));
+            .andExpect(jsonPath("$.endTime").value(DEFAULT_END_TIME.toString()))
+            .andExpect(jsonPath("$.note").value(DEFAULT_NOTE.toString()));
     }
 
     @Test
@@ -179,7 +186,8 @@ public class AppointmentResourceIntTest {
         Appointment updatedAppointment = appointmentRepository.findOne(appointment.getId());
         updatedAppointment
             .startTime(UPDATED_START_TIME)
-            .endTime(UPDATED_END_TIME);
+            .endTime(UPDATED_END_TIME)
+            .note(UPDATED_NOTE);
 
         restAppointmentMockMvc.perform(put("/api/appointments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -192,6 +200,7 @@ public class AppointmentResourceIntTest {
         Appointment testAppointment = appointmentList.get(appointmentList.size() - 1);
         assertThat(testAppointment.getStartTime()).isEqualTo(UPDATED_START_TIME);
         assertThat(testAppointment.getEndTime()).isEqualTo(UPDATED_END_TIME);
+        assertThat(testAppointment.getNote()).isEqualTo(UPDATED_NOTE);
     }
 
     @Test

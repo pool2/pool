@@ -26,11 +26,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="material"/>
 
-        <addForeignKeyConstraint baseColumnNames="note_id"
-                                 baseTableName="pool"
-                                 constraintName="fk_pool_note_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="note"/>
-
     </changeSet>
 </databaseChangeLog>

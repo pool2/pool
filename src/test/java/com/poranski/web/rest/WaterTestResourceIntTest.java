@@ -60,6 +60,9 @@ public class WaterTestResourceIntTest {
     private static final LocalDate DEFAULT_DATE_TIME = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATE_TIME = LocalDate.now(ZoneId.systemDefault());
 
+    private static final String DEFAULT_NOTE = "AAAAAAAAAA";
+    private static final String UPDATED_NOTE = "BBBBBBBBBB";
+
     @Autowired
     private WaterTestRepository waterTestRepository;
 
@@ -103,7 +106,8 @@ public class WaterTestResourceIntTest {
             .calciumHardness(DEFAULT_CALCIUM_HARDNESS)
             .cyanuricAcid(DEFAULT_CYANURIC_ACID)
             .totalDissolvedSolids(DEFAULT_TOTAL_DISSOLVED_SOLIDS)
-            .dateTime(DEFAULT_DATE_TIME);
+            .dateTime(DEFAULT_DATE_TIME)
+            .note(DEFAULT_NOTE);
         return waterTest;
     }
 
@@ -134,6 +138,7 @@ public class WaterTestResourceIntTest {
         assertThat(testWaterTest.getCyanuricAcid()).isEqualTo(DEFAULT_CYANURIC_ACID);
         assertThat(testWaterTest.getTotalDissolvedSolids()).isEqualTo(DEFAULT_TOTAL_DISSOLVED_SOLIDS);
         assertThat(testWaterTest.getDateTime()).isEqualTo(DEFAULT_DATE_TIME);
+        assertThat(testWaterTest.getNote()).isEqualTo(DEFAULT_NOTE);
     }
 
     @Test
@@ -172,7 +177,8 @@ public class WaterTestResourceIntTest {
             .andExpect(jsonPath("$.[*].calciumHardness").value(hasItem(DEFAULT_CALCIUM_HARDNESS.doubleValue())))
             .andExpect(jsonPath("$.[*].cyanuricAcid").value(hasItem(DEFAULT_CYANURIC_ACID.doubleValue())))
             .andExpect(jsonPath("$.[*].totalDissolvedSolids").value(hasItem(DEFAULT_TOTAL_DISSOLVED_SOLIDS.doubleValue())))
-            .andExpect(jsonPath("$.[*].dateTime").value(hasItem(DEFAULT_DATE_TIME.toString())));
+            .andExpect(jsonPath("$.[*].dateTime").value(hasItem(DEFAULT_DATE_TIME.toString())))
+            .andExpect(jsonPath("$.[*].note").value(hasItem(DEFAULT_NOTE.toString())));
     }
 
     @Test
@@ -192,7 +198,8 @@ public class WaterTestResourceIntTest {
             .andExpect(jsonPath("$.calciumHardness").value(DEFAULT_CALCIUM_HARDNESS.doubleValue()))
             .andExpect(jsonPath("$.cyanuricAcid").value(DEFAULT_CYANURIC_ACID.doubleValue()))
             .andExpect(jsonPath("$.totalDissolvedSolids").value(DEFAULT_TOTAL_DISSOLVED_SOLIDS.doubleValue()))
-            .andExpect(jsonPath("$.dateTime").value(DEFAULT_DATE_TIME.toString()));
+            .andExpect(jsonPath("$.dateTime").value(DEFAULT_DATE_TIME.toString()))
+            .andExpect(jsonPath("$.note").value(DEFAULT_NOTE.toString()));
     }
 
     @Test
@@ -219,7 +226,8 @@ public class WaterTestResourceIntTest {
             .calciumHardness(UPDATED_CALCIUM_HARDNESS)
             .cyanuricAcid(UPDATED_CYANURIC_ACID)
             .totalDissolvedSolids(UPDATED_TOTAL_DISSOLVED_SOLIDS)
-            .dateTime(UPDATED_DATE_TIME);
+            .dateTime(UPDATED_DATE_TIME)
+            .note(UPDATED_NOTE);
 
         restWaterTestMockMvc.perform(put("/api/water-tests")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -237,6 +245,7 @@ public class WaterTestResourceIntTest {
         assertThat(testWaterTest.getCyanuricAcid()).isEqualTo(UPDATED_CYANURIC_ACID);
         assertThat(testWaterTest.getTotalDissolvedSolids()).isEqualTo(UPDATED_TOTAL_DISSOLVED_SOLIDS);
         assertThat(testWaterTest.getDateTime()).isEqualTo(UPDATED_DATE_TIME);
+        assertThat(testWaterTest.getNote()).isEqualTo(UPDATED_NOTE);
     }
 
     @Test

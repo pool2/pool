@@ -30,6 +30,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="note" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="customer_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -37,10 +41,6 @@
                 <constraints unique="true" nullable="true" />
             </column>
             <column name="material_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="note_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

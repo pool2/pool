@@ -3,12 +3,6 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "note",
-            "otherEntityName": "note",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
             "relationshipName": "filterBrand",
             "otherEntityName": "filterBrand",
             "otherEntityField": "id"
@@ -35,6 +29,10 @@
         },
         {
             "fieldName": "brand",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "note",
             "fieldType": "String"
         },
         {

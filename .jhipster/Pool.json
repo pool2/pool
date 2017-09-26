@@ -20,12 +20,6 @@
             "relationshipName": "material",
             "otherEntityName": "material",
             "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipName": "note",
-            "otherEntityName": "note",
-            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -36,6 +30,10 @@
         {
             "fieldName": "size",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "note",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20170919205625",

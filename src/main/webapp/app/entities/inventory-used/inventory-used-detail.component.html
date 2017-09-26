@@ -12,16 +12,14 @@
         <dd>
             <span>{{inventoryUsed.quantity}}</span>
         </dd>
+        <dt><span>Note</span></dt>
+        <dd>
+            <span>{{inventoryUsed.note}}</span>
+        </dd>
         <dt><span>Inventory Item</span></dt>
         <dd>
             <div *ngIf="inventoryUsed.inventoryItem">
                 <a [routerLink]="['/inventory-item', inventoryUsed.inventoryItem?.id]">{{inventoryUsed.inventoryItem?.id}}</a>
-            </div>
-        </dd>
-        <dt><span>Note</span></dt>
-        <dd>
-            <div *ngIf="inventoryUsed.note">
-                <a [routerLink]="['/note', inventoryUsed.note?.id]">{{inventoryUsed.note?.id}}</a>
             </div>
         </dd>
     </dl>

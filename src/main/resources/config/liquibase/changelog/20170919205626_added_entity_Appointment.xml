@@ -29,6 +29,10 @@
             <column name="end_time" type="date">
                 <constraints nullable="true" />
             </column>
+
+            <column name="note" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="water_test_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>
@@ -37,10 +41,6 @@
             </column>
 
             <column name="pool_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="note_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

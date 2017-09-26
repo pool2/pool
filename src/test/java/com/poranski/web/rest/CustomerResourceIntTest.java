@@ -70,6 +70,9 @@ public class CustomerResourceIntTest {
     private static final String DEFAULT_ZIP = "AAAAAAAAAA";
     private static final String UPDATED_ZIP = "BBBBBBBBBB";
 
+    private static final String DEFAULT_NOTE = "AAAAAAAAAA";
+    private static final String UPDATED_NOTE = "BBBBBBBBBB";
+
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -117,7 +120,8 @@ public class CustomerResourceIntTest {
             .address3(DEFAULT_ADDRESS_3)
             .city(DEFAULT_CITY)
             .state(DEFAULT_STATE)
-            .zip(DEFAULT_ZIP);
+            .zip(DEFAULT_ZIP)
+            .note(DEFAULT_NOTE);
         return customer;
     }
 
@@ -152,6 +156,7 @@ public class CustomerResourceIntTest {
         assertThat(testCustomer.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testCustomer.getState()).isEqualTo(DEFAULT_STATE);
         assertThat(testCustomer.getZip()).isEqualTo(DEFAULT_ZIP);
+        assertThat(testCustomer.getNote()).isEqualTo(DEFAULT_NOTE);
     }
 
     @Test
@@ -230,7 +235,8 @@ public class CustomerResourceIntTest {
             .andExpect(jsonPath("$.[*].address3").value(hasItem(DEFAULT_ADDRESS_3.toString())))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
             .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE.toString())))
-            .andExpect(jsonPath("$.[*].zip").value(hasItem(DEFAULT_ZIP.toString())));
+            .andExpect(jsonPath("$.[*].zip").value(hasItem(DEFAULT_ZIP.toString())))
+            .andExpect(jsonPath("$.[*].note").value(hasItem(DEFAULT_NOTE.toString())));
     }
 
     @Test
@@ -254,7 +260,8 @@ public class CustomerResourceIntTest {
             .andExpect(jsonPath("$.address3").value(DEFAULT_ADDRESS_3.toString()))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
             .andExpect(jsonPath("$.state").value(DEFAULT_STATE.toString()))
-            .andExpect(jsonPath("$.zip").value(DEFAULT_ZIP.toString()));
+            .andExpect(jsonPath("$.zip").value(DEFAULT_ZIP.toString()))
+            .andExpect(jsonPath("$.note").value(DEFAULT_NOTE.toString()));
     }
 
     @Test
@@ -285,7 +292,8 @@ public class CustomerResourceIntTest {
             .address3(UPDATED_ADDRESS_3)
             .city(UPDATED_CITY)
             .state(UPDATED_STATE)
-            .zip(UPDATED_ZIP);
+            .zip(UPDATED_ZIP)
+            .note(UPDATED_NOTE);
 
         restCustomerMockMvc.perform(put("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -307,6 +315,7 @@ public class CustomerResourceIntTest {
         assertThat(testCustomer.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testCustomer.getState()).isEqualTo(UPDATED_STATE);
         assertThat(testCustomer.getZip()).isEqualTo(UPDATED_ZIP);
+        assertThat(testCustomer.getNote()).isEqualTo(UPDATED_NOTE);
     }
 
     @Test

@@ -26,12 +26,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="pool"/>
 
-        <addForeignKeyConstraint baseColumnNames="note_id"
-                                 baseTableName="appointment"
-                                 constraintName="fk_appointment_note_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="note"/>
-
         <addForeignKeyConstraint baseColumnNames="appointments_id"
                                  baseTableName="appointment_inventory_used"
                                  constraintName="fk_appointment_inventory_used_appointments_id"

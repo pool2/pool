@@ -19,10 +19,10 @@
             <th><span>ID</span></th>
             <th><span>Start Time</span></th>
             <th><span>End Time</span></th>
+            <th><span>Note</span></th>
             <th><span>Water Test</span></th>
             <th><span>Employee</span></th>
             <th><span>Pool</span></th>
-            <th><span>Note</span></th>
             <th><span>Inventory Used</span></th>
             <th><span>Task</span></th>
             <th></th>
@@ -33,6 +33,7 @@
                 <td><a [routerLink]="['../appointment', appointment.id ]">{{appointment.id}}</a></td>
                 <td>{{appointment.startTime | date:'mediumDate'}}</td>
                 <td>{{appointment.endTime | date:'mediumDate'}}</td>
+                <td>{{appointment.note}}</td>
                 <td>
                     <div *ngIf="appointment.waterTest">
                         <a [routerLink]="['../water-test', appointment.waterTest?.id ]" >{{appointment.waterTest?.id}}</a>
@@ -46,11 +47,6 @@
                 <td>
                     <div *ngIf="appointment.pool">
                         <a [routerLink]="['../pool', appointment.pool?.id ]" >{{appointment.pool?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="appointment.note">
-                        <a [routerLink]="['../note', appointment.note?.id ]" >{{appointment.note?.id}}</a>
                     </div>
                 </td>
                 <td>

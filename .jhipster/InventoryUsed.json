@@ -6,12 +6,6 @@
             "relationshipName": "inventoryItem",
             "otherEntityName": "inventoryItem",
             "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipName": "note",
-            "otherEntityName": "note",
-            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -22,6 +16,10 @@
         {
             "fieldName": "quantity",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "note",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20170919205629",
