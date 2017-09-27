@@ -14,6 +14,7 @@ import {
     appointmentRoute,
     appointmentPopupRoute,
 } from './';
+import { AppointmentActiveComponent } from './appointment-active.component';
 
 const ENTITY_STATES = [
     ...appointmentRoute,
@@ -25,8 +26,12 @@ const ENTITY_STATES = [
         PoolSharedModule,
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
+    exports: [
+        AppointmentActiveComponent
+    ] ,
     declarations: [
         AppointmentComponent,
+        AppointmentActiveComponent,
         AppointmentDetailComponent,
         AppointmentDialogComponent,
         AppointmentDeleteDialogComponent,
@@ -35,6 +40,7 @@ const ENTITY_STATES = [
     ],
     entryComponents: [
         AppointmentComponent,
+        AppointmentActiveComponent,
         AppointmentDialogComponent,
         AppointmentPopupComponent,
         AppointmentDeleteDialogComponent,

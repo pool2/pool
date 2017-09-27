@@ -9,17 +9,13 @@ import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
-    selector: 'jhi-appointment',
-    templateUrl: './appointment.component.html'
+    selector: 'jhi-appointment-active',
+    templateUrl: './appointment-active.component.html'
 })
-export class AppointmentComponent implements OnInit, OnDestroy {
+export class AppointmentActiveComponent implements OnInit, OnDestroy {
 appointments: Appointment[];
     currentAccount: any;
     eventSubscriber: Subscription;
-
-    // sort
-    sortType = 'startTime';
-    sortReverse = false;
 
     constructor(
         private appointmentService: AppointmentService,

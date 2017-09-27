@@ -8,8 +8,9 @@
 
         <div [ngSwitch]="isAuthenticated()">
             <div *ngSwitchCase="true">
-                <h1 class="display-4">Welcome, {{account.firstName}}!</h1>
-                <p class="lead" *ngIf="employee">{{employee.company.name}} </p>
+                <h2 class="display-4">{{account.firstName}} {{account.lastName}}</h2>
+                <p class="lead" *ngIf="employee">{{employee.company.name}} - {{date | date:'MM-dd-yyyy'}} </p>
+                <jhi-appointment-active></jhi-appointment-active>
             </div>
             <!--
             <div class="alert alert-success" *ngSwitchCase="true">

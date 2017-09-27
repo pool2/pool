@@ -5,6 +5,7 @@ import { UserRouteAccessService } from '../../shared';
 import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { AppointmentComponent } from './appointment.component';
+import { AppointmentActiveComponent } from './appointment-active.component';
 import { AppointmentDetailComponent } from './appointment-detail.component';
 import { AppointmentPopupComponent } from './appointment-dialog.component';
 import { AppointmentDeletePopupComponent } from './appointment-delete-dialog.component';

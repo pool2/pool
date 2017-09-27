@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
     account: Account;
     employee: Employee;
     modalRef: NgbModalRef;
+    date: Date;
 
     constructor(
         private principal: Principal,
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.date = new Date();
         this.principal.identity().then((account) => {
             this.account = account;
 
